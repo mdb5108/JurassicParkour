@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - OperatorCamera
+  - Wall
+  - Clipper
+  - Floor
   - Obstacle
   layers:
   - Default
@@ -15,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - IgnoreOperator
+  - IgnorePlayer
   - 
   - 
   - 
