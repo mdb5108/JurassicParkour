@@ -101,6 +101,14 @@ public class OperatorManager : MonoBehaviour {
 		}
 	}
 
+    void TurnObstacleNormal(GameObject go)
+    {
+        go.layer = LayerMask.NameToLayer("Default");
+        MeshRenderer m = go.GetComponent<MeshRenderer>();
+        if(m != null)
+            m.material.color = Color.white;
+    }
+
 	void placeObstacle()
 	{
 //		if(selectedObstacle != null && placingObstacle)
@@ -108,10 +116,10 @@ public class OperatorManager : MonoBehaviour {
 
 		selectedObstacle.transform.position = placingPoint;
 //		selectedObstacle.layer = LayerMask.NameToLayer("Default");
+        TurnObstacleNormal(selectedObstacle);
 		foreach(Transform t in selectedObstacle.transform)
 		{
-			t.gameObject.layer = LayerMask.NameToLayer("Default");
-			t.GetComponent<MeshRenderer>().material.color = Color.white;
+            TurnObstacleNormal(t.gameObject);
 		}
         selectedObstacle.GetComponentInChildren<Collider>().enabled = true;
         selectedObstacle.tag = "Untagged";
