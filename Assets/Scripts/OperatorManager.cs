@@ -33,6 +33,7 @@ public class OperatorManager : MonoBehaviour {
 				// ONLY FOR TESTING, CHANGE TO UI INPUT
 				selectedObstacle = obstacleList[0];
 				selectedObstacle.layer = LayerMask.NameToLayer("IgnorePlayer");
+                selectedObstacle.GetComponentInChildren<Collider>().enabled = false;
 				placingObstacle = true;
 			}
 
@@ -112,8 +113,8 @@ public class OperatorManager : MonoBehaviour {
 			t.gameObject.layer = LayerMask.NameToLayer("Default");
 			t.GetComponent<MeshRenderer>().material.color = Color.white;
 		}
-
-		selectedObstacle.tag = "Untagged";
+        selectedObstacle.GetComponentInChildren<Collider>().enabled = true;
+        selectedObstacle.tag = "Untagged";
 		placingObstacle = false;
 		selectedObstacle = null;
 		placingPoint = Vector3.zero;

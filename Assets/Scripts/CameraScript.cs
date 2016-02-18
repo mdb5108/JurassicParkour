@@ -7,7 +7,7 @@ public class CameraScript : MonoBehaviour {
 	public Transform Player;    // The target we are following
 	public Transform Clipper; // Empty GO
 	public float mapWidth;
-    public float zDistance;      // The distance from the target along its Z axis
+    public float distance;      // The distance from the target along its Z axis
     public float height;        // the height we want the camera to be above the target
     public float positionDamping;   // how quickly we should get to the target position
     public float rotationDamping;   // how quickly we should get to the target rotation
@@ -27,28 +27,19 @@ public class CameraScript : MonoBehaviour {
 		transform.LookAt(Player.position);
 //		initalDirection = (Player.position - this.transform.position).normalized;
     }
-
     // LateUpdate is called once per frame
     void LateUpdate ()
 	{
 		checkForWalls();
 
-		if(Input.GetMouseButton(1))
-		{
-			transform.RotateAround(Player.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
-			Clipper.transform.RotateAround(Player.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
-
-		}
-
-		// UNCOMMENT IF NOT PLAYER'S CHILD----------------------------------------//
-
-		Vector3 targetPosition = Player.position - (Player.forward * zDistance) + (Player.up * height);
-		transform.position = Vector3.MoveTowards(transform.position, targetPosition, positionDamping * Time.deltaTime);
-
-		// ---------------------------------//
-
-//        Quaternion targetRotation = Quaternion.LookRotation(target.position-transform.position, target.up);
-//        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationDamping * Time.deltaTime);
+        if (Input.GetMouseButton(1))
+        {
+            transform.RotateAround(Player.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
+            Clipper.transform.RotateAround(Player.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
+        }
+        
+        Vector3 targetPosition = Player.position - (transform.forward * distance) + (transform.up * height);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, positionDamping * Time.deltaTime);
 
 
     }
@@ -86,7 +77,7 @@ public class CameraScript : MonoBehaviour {
 	// Use this for public variable initialization
     void Reset() 
     {
-        zDistance = 0;
+        distance = 0;
         height = 2;
         positionDamping = 50;
         rotationDamping = 0;
