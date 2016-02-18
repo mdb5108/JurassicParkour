@@ -42,8 +42,8 @@ public class CameraScript : MonoBehaviour {
 
 		// UNCOMMENT IF NOT PLAYER'S CHILD----------------------------------------//
 
-//		Vector3 targetPosition = Player.position - (Player.forward * zDistance) + (Player.up * height);
-//		transform.position = Vector3.MoveTowards(transform.position, targetPosition, positionDamping * Time.deltaTime);
+		Vector3 targetPosition = Player.position - (Player.forward * zDistance) + (Player.up * height);
+		transform.position = Vector3.MoveTowards(transform.position, targetPosition, positionDamping * Time.deltaTime);
 
 		// ---------------------------------//
 
