@@ -1,29 +1,36 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections;
 
 using UnityStandardAssets.CrossPlatformInput;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class RunnerController : MonoBehaviour
 {
     private float radiusOfInteraction;
     private readonly static float INTERACTION_LENGTH = 5f;
+
+    private ThirdPersonUserControl userControl;
+    private Animation legacyAnim;
+    private Transform meshRoot;
+
     // Use this for initialization
     void Start ()
     {
         radiusOfInteraction = GetComponent<Collider>().bounds.extents.x;
+        userControl = GetComponent<ThirdPersonUserControl>();
+        legacyAnim = GetComponent<Animation>();
+        meshRoot = transform.Find("Mesh");
+        Assert.IsTrue( meshRoot != null );
     }
 
     // Update is called once per frame
     void Update ()
     {
-        HandleObstacleInteraction();
     }
 
-    void HandleObstacleInteraction()
+    public void HandleObstacleInteraction(bool jumpUp, bool jumpDown)
     {
-        bool jumpUp   = CrossPlatformInputManager.GetAxis("JUMP_UP") > .5;
-        bool jumpDown = CrossPlatformInputManager.GetAxis("JUMP_DOWN") > .5;
-
         if(jumpUp || jumpDown)
         {
             RaycastHit[] hits;
@@ -32,10 +39,22 @@ public class RunnerController : MonoBehaviour
             {
                 if(hits[i].collider.tag == "Obstacle")
                 {
-                    Debug.Log(hits[i].collider.gameObject);
+                    Animation anim = hits[i].transform.GetComponent<Animation>();
+                    userControl.EnableInput(false);
+                    legacyAnim.clip = anim.clip;
+                    legacyAnim.AddClip(anim.clip, anim.clip.name);
+                    legacyAnim.Play();
                     break;
                 }
             }
         }
+    }
+
+    public void AnimationFinished()
+    {
+      transform.position = meshRoot.position;
+      meshRoot.position = transform.TransformPoint(Vector3.zero);
+      legacyAnim.RemoveClip(legacyAnim.clip);
+      userControl.EnableInput(true);
     }
 }
