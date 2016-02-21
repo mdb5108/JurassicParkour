@@ -278,8 +278,9 @@ Animation:
   m_GameObject: {fileID: 153106}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: 6caab3c904ea51f45ba6cdcdb7698b05, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6caab3c904ea51f45ba6cdcdb7698b05, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -309,7 +310,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Animations.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: allowed_actions.Array.size
@@ -346,7 +347,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Animation
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7400000, guid: 6caab3c904ea51f45ba6cdcdb7698b05, type: 2}
     - target: {fileID: 0}
       propertyPath: m_PlayAutomatically
       value: 0
