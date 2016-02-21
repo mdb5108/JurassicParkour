@@ -14,6 +14,9 @@ public class RunnerController : MonoBehaviour
     private Animation legacyAnim;
     private Transform meshRoot;
 
+    private Rigidbody characterRigidbody;
+    private Collider characterCollider;
+
     // Use this for initialization
     void Start ()
     {
@@ -22,6 +25,8 @@ public class RunnerController : MonoBehaviour
         legacyAnim = GetComponent<Animation>();
         meshRoot = transform.Find("Mesh");
         Assert.IsTrue( meshRoot != null );
+        characterCollider = GetComponent<Collider>();
+        characterRigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -41,6 +46,8 @@ public class RunnerController : MonoBehaviour
                 {
                     Animation anim = hits[i].transform.GetComponent<Animation>();
                     userControl.EnableInput(false);
+                    characterRigidbody.useGravity = false;
+                    characterCollider.enabled = false;
                     legacyAnim.clip = anim.clip;
                     legacyAnim.AddClip(anim.clip, anim.clip.name);
                     legacyAnim.Play();
@@ -56,5 +63,7 @@ public class RunnerController : MonoBehaviour
       meshRoot.position = transform.TransformPoint(Vector3.zero);
       legacyAnim.RemoveClip(legacyAnim.clip);
       userControl.EnableInput(true);
+      characterRigidbody.useGravity = true;
+      characterCollider.enabled = true;
     }
 }
