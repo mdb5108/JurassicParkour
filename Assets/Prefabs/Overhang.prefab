@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowed_actions: 05000000
-  angle_approach: {x: 0, y: 0, z: 1}
+  angle_approach: 0
   angle_threshold: 0
   possible_interaction: 0
   obst_len_wid: {x: 0, y: 0}
@@ -242,6 +242,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: angle_approach
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
