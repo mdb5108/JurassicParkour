@@ -55,7 +55,7 @@ public class RunnerController : MonoBehaviour
                     {
                         Animation anim = obstacle.GetComponent<Animation>();
                         userControl.EnableInput(false);
-                        characterRigidbody.useGravity = false;
+                        characterRigidbody.isKinematic = true;
                         characterCollider.enabled = false;
                         legacyAnim.clip = anim.clip;
                         legacyAnim.AddClip(anim.clip, anim.clip.name);
@@ -73,7 +73,7 @@ public class RunnerController : MonoBehaviour
       meshRoot.position = transform.TransformPoint(Vector3.zero);
       legacyAnim.RemoveClip(legacyAnim.clip);
       userControl.EnableInput(true);
-      characterRigidbody.useGravity = true;
+      characterRigidbody.isKinematic = false;
       characterCollider.enabled = true;
     }
 }
