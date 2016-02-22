@@ -44,14 +44,22 @@ public class RunnerController : MonoBehaviour
             {
                 if(hits[i].collider.tag == "Obstacle")
                 {
-                    Animation anim = hits[i].transform.GetComponent<Animation>();
-                    userControl.EnableInput(false);
-                    characterRigidbody.useGravity = false;
-                    characterCollider.enabled = false;
-                    legacyAnim.clip = anim.clip;
-                    legacyAnim.AddClip(anim.clip, anim.clip.name);
-                    legacyAnim.Play();
-                    break;
+                    Obstacles obstacle = hits[i].transform.GetComponent<Obstacles>();
+                    var interactionType = obstacle.get_possible_interaction();
+                    bool matching = ((interactionType == Obstacles.way_of_interaction.PASS_UP)   && jumpUp) ||
+                                    ((interactionType == Obstacles.way_of_interaction.PASS_DOWN) && jumpDown);
+                    if(matching
+                        && obstacle.CheckApproachAngle(transform.position, transform.forward))
+                    {
+                        Animation anim = obstacle.GetComponent<Animation>();
+                        userControl.EnableInput(false);
+                        characterRigidbody.useGravity = false;
+                        characterCollider.enabled = false;
+                        legacyAnim.clip = anim.clip;
+                        legacyAnim.AddClip(anim.clip, anim.clip.name);
+                        legacyAnim.Play();
+                        break;
+                    }
                 }
             }
         }
