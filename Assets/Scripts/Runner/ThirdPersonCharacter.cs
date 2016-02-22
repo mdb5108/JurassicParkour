@@ -29,6 +29,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
+    public bool GetGrounded()
+    {
+      return m_IsGrounded;
+    }
 
 		void Start()
 		{

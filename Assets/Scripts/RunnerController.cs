@@ -10,6 +10,7 @@ public class RunnerController : MonoBehaviour
     private float radiusOfInteraction;
     private readonly static float INTERACTION_LENGTH = 2f;
 
+    private ThirdPersonCharacter thirdCharacter;
     private ThirdPersonUserControl userControl;
     private Animation legacyAnim;
     private Transform meshRoot;
@@ -21,6 +22,7 @@ public class RunnerController : MonoBehaviour
     void Start ()
     {
         radiusOfInteraction = GetComponent<Collider>().bounds.extents.x;
+        thirdCharacter = GetComponent<ThirdPersonCharacter>();
         userControl = GetComponent<ThirdPersonUserControl>();
         legacyAnim = GetComponent<Animation>();
         meshRoot = transform.Find("Mesh");
@@ -36,7 +38,7 @@ public class RunnerController : MonoBehaviour
 
     public void HandleObstacleInteraction(bool jumpUp, bool jumpDown)
     {
-        if(jumpUp || jumpDown)
+        if((jumpUp || jumpDown) && thirdCharacter.GetGrounded())
         {
             RaycastHit[] hits;
             hits = Physics.SphereCastAll(transform.position, radiusOfInteraction, transform.forward, INTERACTION_LENGTH);
