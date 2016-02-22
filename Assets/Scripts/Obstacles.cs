@@ -22,7 +22,7 @@ public class Obstacles : MonoBehaviour {
     [SerializeField]
     private actions[] allowed_actions;
     [SerializeField]
-    private Vector3 angle_approach;
+    private float angle_approach;
     [SerializeField]
     private float angle_threshold;
     [SerializeField]
@@ -50,7 +50,7 @@ public class Obstacles : MonoBehaviour {
 
     Vector3 get_angle_approach()
     {
-        return angle_approach;
+        return Quaternion.AngleAxis(angle_approach, Vector3.up)*Vector3.forward;
     }
 
     float get_angle_threshold()
