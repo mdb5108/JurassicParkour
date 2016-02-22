@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Obstacles : MonoBehaviour {
 
-    private enum actions
+    public enum actions
     {
         VAULT = 1,
         LEAP,
@@ -12,7 +12,7 @@ public class Obstacles : MonoBehaviour {
         SLIDE
     };
 
-    private enum way_of_interaction
+    public enum way_of_interaction
     {
         PASS_UP = 1,
         PASS_DOWN
@@ -43,27 +43,27 @@ public class Obstacles : MonoBehaviour {
 	
 	}
 
-    actions[] get_allowed_actions()
+    public actions[] get_allowed_actions()
     {
         return allowed_actions;
     }
 
-    Vector3 get_angle_approach()
+    public Vector3 get_angle_approach()
     {
         return Quaternion.AngleAxis(angle_approach, Vector3.up)*Vector3.forward;
     }
 
-    float get_angle_threshold()
+    public float get_angle_threshold()
     {
         return angle_threshold;
     }
 
-    way_of_interaction get_possible_interaction()
+    public way_of_interaction get_possible_interaction()
     {
         return possible_interaction;
     }
 
-    Vector2 get_obst_len_wid()
+    public Vector2 get_obst_len_wid()
     {
         return obst_len_wid;
     }
