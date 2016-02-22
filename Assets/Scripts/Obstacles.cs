@@ -43,6 +43,22 @@ public class Obstacles : MonoBehaviour {
 	
 	}
 
+  public bool CheckApproachAngle(Vector3 position, Vector3 playerForward)
+  {
+      Vector3 direction = position - transform.position;
+      Vector3 approachDir = transform.TransformDirection(get_angle_approach());
+
+      if(Vector3.Dot(direction, transform.forward) > 0)
+      {
+        Vector3 axisOfReflection = Vector3.Cross(transform.forward, Vector3.up);
+        approachDir = Vector3.Reflect(-approachDir, axisOfReflection);
+      }
+
+      float angle = Vector3.Angle(playerForward, approachDir);
+
+      return angle <= get_angle_threshold();
+  }
+
     public actions[] get_allowed_actions()
     {
         return allowed_actions;
