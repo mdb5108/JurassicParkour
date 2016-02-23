@@ -104,7 +104,7 @@ public class OperatorManager : MonoBehaviour {
 
 		foreach(RaycastHit hit in hits)
 		{
-			if(hit.collider.name == "Floor")
+			if(hit.collider.tag == "Floor")
 			{
 				
 				float xPos = Mathf.Floor(hit.point.x / cellWidth) * cellWidth;

@@ -2,9 +2,10 @@
 using System.Collections;
 
 public class HandOfCards : MonoBehaviour {
-    
+
+    public float popup_distance;
     private int card_count;
-    private RectTransform first_rect;
+    private Vector2 first_rect_position;
 	// Use this for initialization
 
     void OnEnable()
@@ -23,11 +24,9 @@ public class HandOfCards : MonoBehaviour {
         Debug.Log(card_count);
 
         Transform child;
-        child = transform.GetChild(0);
-        //Debug.Log(child.name);
-        first_rect = child.GetComponent<RectTransform>();
+        child = transform.GetChild(0);        
+        first_rect_position = child.GetComponent<RectTransform>().anchoredPosition;        
         
-        //Debug.Log(first_rect.TransformPoint(first_rect.rect.position));
     }
 	    
 
@@ -48,21 +47,16 @@ public class HandOfCards : MonoBehaviour {
             canvas = child.GetComponent<CanvasRenderer>();
             canvas.SetColor(Color.white);
             rect = child.GetComponent<RectTransform>();
-
-            Debug.Log(rect.TransformPoint(rect.position));
-            //Debug.Log(first_rect.position);
-            if (rect.position.y > first_rect.position.y)
-            {
-                //rect.Translate(0,-2,0);
-                //Debug.Log(child.name); 
-                //child.Translate(0, -5, 0,Space.Self);
+            if (rect.anchoredPosition.y > first_rect_position.y)
+            {                
+                rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, first_rect_position.y);             
             }
         }
         if (key_pressed >= 1 && key_pressed <= card_count)
         {
             child = transform.GetChild(key_pressed - 1);
-            rect = child.GetComponent<RectTransform>();
-            //rect.Translate(0, 2, 0);
+            rect = child.GetComponent<RectTransform>();            
+            rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, first_rect_position.y + popup_distance);          
             canvas = child.GetComponent<CanvasRenderer>();
             Color light_green = new Color();
             ColorUtility.TryParseHtmlString("#49CC7BFF", out light_green);
