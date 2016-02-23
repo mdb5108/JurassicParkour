@@ -377,7 +377,8 @@ MonoBehaviour:
   possible_interaction: 1
   obst_len_wid: {x: 5, y: 5}
   start_axis:
-    axisNormal: 90
+    origin: {x: 1.5, y: 0, z: 0}
+    axisNormal: 270
     distanceFromCenter: 1
     mirrored: 0
 --- !u!1001 &100100000
@@ -426,13 +427,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: start_axis.axisNormal
-      value: 90
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: start_axis.distanceFromCenter
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.origin.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.origin.x
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

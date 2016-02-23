@@ -59,8 +59,9 @@ public class RunnerController : MonoBehaviour
                     {
                         //Find nearest point on axis
                         Vector3 axisOfInteraction = obstacle.get_start_axis_offset(transform.position);
-                        Vector3 pointOnAxis = obstacle.transform.position + axisOfInteraction;
+                        Vector3 pointOnAxis = obstacle.get_start_axis_point_on_line(transform.position);
                         Vector3 closestPointDelta = Vector3.Project(pointOnAxis - transform.position, axisOfInteraction.normalized);
+
                         //If the delta is pointing opposite the axis offset we can still
                         //run up
                         if(Vector3.Dot(closestPointDelta, axisOfInteraction) < 0)

@@ -23,6 +23,7 @@ public class Obstacles : MonoBehaviour {
     [System.Serializable]
     public struct StartAxis
     {
+        public Vector3 origin;
         public float axisNormal;
         public float distanceFromCenter;
         public bool mirrored;
@@ -98,13 +99,18 @@ public class Obstacles : MonoBehaviour {
 
     public Vector3 get_start_axis_offset(Vector3 position)
     {
-        Vector3 diff = position - transform.position;
+        Vector3 diff = position - (transform.position+transform.TransformDirection(start_axis.origin));
         Vector3 axisNormal = transform.TransformDirection(start_axis.distanceFromCenter*(Quaternion.AngleAxis(start_axis.axisNormal, Vector3.up)*Vector3.forward));
         if(Vector3.Dot(axisNormal, diff) < 0)
         {
             axisNormal = -axisNormal;
         }
         return axisNormal;
+    }
+
+    public Vector3 get_start_axis_point_on_line(Vector3 position)
+    {
+        return get_start_axis_offset(position) + transform.position + start_axis.origin;
     }
 
 

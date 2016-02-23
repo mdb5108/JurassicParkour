@@ -221,10 +221,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowed_actions: 05000000
   angle_approach: 0
-  angle_threshold: 0
-  possible_interaction: 0
+  angle_threshold: 80
+  possible_interaction: 2
   obst_len_wid: {x: 3, y: 3}
   start_axis:
+    origin: {x: 0, y: 0, z: 0}
     axisNormal: 0
     distanceFromCenter: 1
     mirrored: 1
@@ -254,6 +255,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: start_axis.distanceFromCenter
       value: 1
@@ -269,6 +271,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: obst_len_wid.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: angle_threshold
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: possible_interaction
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
