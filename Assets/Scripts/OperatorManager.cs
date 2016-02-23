@@ -151,7 +151,7 @@ public class OperatorManager : MonoBehaviour {
             TurnObstacleNormal(t.gameObject);
 		}
         selectedObstacle.GetComponentInChildren<Collider>().enabled = true;
-        selectedObstacle.tag = "Untagged";
+        selectedObstacle.tag = "Obstacle";
 		placingObstacle = false;
 		selectedObstacle = null;
 		placingPoint = Vector3.zero;
