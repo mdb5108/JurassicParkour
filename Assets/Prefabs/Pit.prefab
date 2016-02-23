@@ -278,10 +278,11 @@ Animation:
   m_GameObject: {fileID: 160154}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: 355eab81edecb4c418d0ed9090cc5c6d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 355eab81edecb4c418d0ed9090cc5c6d, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &11428398
@@ -305,6 +306,8 @@ MonoBehaviour:
     axisNormal: 0
     distanceFromCenter: 2.5
     mirrored: 1
+    lockOrientation: 0
+    lockedOrientation: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -312,6 +315,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: allowed_actions.Array.size
       value: 2
@@ -379,6 +386,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 355eab81edecb4c418d0ed9090cc5c6d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_PlayAutomatically
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
