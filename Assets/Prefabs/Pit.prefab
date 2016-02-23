@@ -300,6 +300,10 @@ MonoBehaviour:
   angle_threshold: 45
   possible_interaction: 1
   obst_len_wid: {x: 0, y: 0}
+  start_axis:
+    axisNormal: 0
+    distanceFromCenter: 1.5
+    mirrored: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -354,6 +358,13 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
+    - target: {fileID: 0}
+      propertyPath: start_axis.distanceFromCenter
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.mirrored
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
