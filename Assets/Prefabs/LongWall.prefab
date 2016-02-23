@@ -354,10 +354,11 @@ Animation:
   m_GameObject: {fileID: 133688}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: a0942a1abda4e194ca2842d06b0c247e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a0942a1abda4e194ca2842d06b0c247e, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &11439770
@@ -376,6 +377,13 @@ MonoBehaviour:
   angle_threshold: 30
   possible_interaction: 1
   obst_len_wid: {x: 5, y: 5}
+  start_axis:
+    origin: {x: 1.5, y: 0, z: 0}
+    axisNormal: 270
+    distanceFromCenter: 0.5
+    mirrored: 0
+    lockOrientation: 1
+    lockedOrientation: 180
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -383,6 +391,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: allowed_actions.Array.size
       value: 1
@@ -422,6 +434,38 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.axisNormal
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.distanceFromCenter
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.origin.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.origin.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: a0942a1abda4e194ca2842d06b0c247e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.lockOrientation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.lockedOrientation
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
