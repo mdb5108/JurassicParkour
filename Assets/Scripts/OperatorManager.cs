@@ -13,9 +13,13 @@ public class OperatorManager : MonoBehaviour {
 	public Obstacles[] OperatorHand;
 
 	Transform Player;
-	// Use this for initialization
+    //changes by shreyas
+    public delegate void num_key_del(int key_pressed);
+    public static event num_key_del num_key_pressed;
+    //
+    // Use this for initialization
 
-	void Start () {
+    void Start () {
 
 		Player = GameObject.FindGameObjectWithTag("Player").transform;
 		opCamera = GameObject.FindGameObjectWithTag("OperatorCamera").GetComponent<Camera>();
@@ -65,6 +69,8 @@ public class OperatorManager : MonoBehaviour {
         {
             string keyPreseed = Input.inputString;
             int keyNum = System.Convert.ToInt32(keyPreseed);
+
+
             // KEYNUM NO OF CARDS IN HAND
             if (keyNum >= 1 && keyNum <= 5)
             {
@@ -76,8 +82,17 @@ public class OperatorManager : MonoBehaviour {
                 selectedObstacle.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
                 selectedObstacle.GetComponentInChildren<Collider>().enabled = false;
                 placingObstacle = true;
+
+                // code changes by Shreyas
+
+                if (num_key_pressed != null)
+                {
+                    num_key_pressed(keyNum);
+                }
+
+                //end of changes       
             }
-           
+
         }
     }
 
@@ -140,7 +155,12 @@ public class OperatorManager : MonoBehaviour {
 		placingObstacle = false;
 		selectedObstacle = null;
 		placingPoint = Vector3.zero;
-
+        //begin changes by shreyas
+        if (num_key_pressed != null)
+        {
+            num_key_pressed(999);  //passing invalid value to clear the highlighting 
+        }
+        //end changes
 	}
 
 	void resetObstacle()

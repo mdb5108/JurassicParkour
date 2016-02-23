@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+
+using System;
 using System.Collections;
 
 public class Obstacles : MonoBehaviour {
@@ -18,6 +20,17 @@ public class Obstacles : MonoBehaviour {
         PASS_DOWN
     }
 
+    [System.Serializable]
+    public struct StartAxis
+    {
+        public Vector3 origin;
+        public float axisNormal;
+        public float distanceFromCenter;
+        public bool mirrored;
+        public bool lockOrientation;
+        public float lockedOrientation;
+    }
+
 
     [SerializeField]
     private actions[] allowed_actions;
@@ -29,6 +42,8 @@ public class Obstacles : MonoBehaviour {
     private way_of_interaction possible_interaction;
     [SerializeField]
     private Vector2 obst_len_wid;
+    [SerializeField]
+    private StartAxis start_axis;
 
 
     // Use this for initialization
@@ -50,8 +65,8 @@ public class Obstacles : MonoBehaviour {
 
       if(Vector3.Dot(direction, transform.forward) > 0)
       {
-        Vector3 axisOfReflection = Vector3.Cross(transform.forward, Vector3.up);
-        approachDir = Vector3.Reflect(-approachDir, axisOfReflection);
+          Vector3 axisOfReflection = Vector3.Cross(transform.forward, Vector3.up);
+          approachDir = Vector3.Reflect(-approachDir, axisOfReflection);
       }
 
       float angle = Vector3.Angle(playerForward, approachDir);
@@ -84,4 +99,35 @@ public class Obstacles : MonoBehaviour {
         return obst_len_wid;
     }
 
+    public Vector3 get_start_axis_offset(Vector3 position)
+    {
+        Vector3 diff = position - (transform.position+transform.TransformDirection(start_axis.origin));
+        Vector3 axisNormal = transform.TransformDirection(start_axis.distanceFromCenter*(Quaternion.AngleAxis(start_axis.axisNormal, Vector3.up)*Vector3.forward));
+        if(Vector3.Dot(axisNormal, diff) < 0)
+        {
+            axisNormal = -axisNormal;
+        }
+        return axisNormal;
+    }
+
+    public Vector3 get_start_axis_point_on_line(Vector3 position)
+    {
+        return get_start_axis_offset(position) + transform.position + start_axis.origin;
+    }
+
+    public bool get_to_lock_orientation()
+    {
+        return start_axis.lockOrientation;
+    }
+
+    public Vector3 get_orientation_facing(Vector3 position)
+    {
+        Vector3 diff = position - transform.position;
+        Vector3 facing = transform.TransformDirection(Quaternion.AngleAxis(start_axis.lockedOrientation, Vector3.up)*Vector3.forward);
+        if(Vector3.Dot(diff, transform.forward) < 0)
+        {
+            facing = -facing;
+        }
+        return facing;
+    }
 }
