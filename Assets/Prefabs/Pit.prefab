@@ -11,9 +11,9 @@ GameObject:
   - 33: {fileID: 3313648}
   - 65: {fileID: 6564986}
   - 23: {fileID: 2363986}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back_floor
-  m_TagString: Untagged
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ GameObject:
   - 111: {fileID: 11185462}
   - 114: {fileID: 11428398}
   - 65: {fileID: 6579844}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pit
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -47,9 +47,9 @@ GameObject:
   - 33: {fileID: 3325116}
   - 65: {fileID: 6522080}
   - 23: {fileID: 2302218}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pit
-  m_TagString: Untagged
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,9 +65,9 @@ GameObject:
   - 33: {fileID: 3320044}
   - 65: {fileID: 6544496}
   - 23: {fileID: 2364180}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front_floor
-  m_TagString: Untagged
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   angle_approach: 0
   angle_threshold: 45
   possible_interaction: 1
-  obst_len_wid: {x: 0, y: 0}
+  obst_len_wid: {x: 3, y: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -345,11 +345,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Obstacle
+      value: InnerObstacle
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: angle_approach.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obst_len_wid.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obst_len_wid.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

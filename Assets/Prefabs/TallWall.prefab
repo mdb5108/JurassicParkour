@@ -11,9 +11,9 @@ GameObject:
   - 33: {fileID: 3350998}
   - 65: {fileID: 6542192}
   - 23: {fileID: 2383468}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floor_front
-  m_TagString: Untagged
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,9 +29,9 @@ GameObject:
   - 33: {fileID: 3319780}
   - 65: {fileID: 6500536}
   - 23: {fileID: 2384784}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floor_back
-  m_TagString: Untagged
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,9 +47,9 @@ GameObject:
   - 33: {fileID: 3392180}
   - 65: {fileID: 6562114}
   - 23: {fileID: 2316908}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ GameObject:
   - 111: {fileID: 11139262}
   - 114: {fileID: 11491172}
   - 65: {fileID: 6561340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TallWall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -345,11 +345,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Obstacle
+      value: InnerObstacle
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: angle_approach.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

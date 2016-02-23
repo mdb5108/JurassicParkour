@@ -9,6 +9,7 @@ TagManager:
   - Clipper
   - Floor
   - Obstacle
+  - InnerObstacle
   layers:
   - Default
   - TransparentFX
