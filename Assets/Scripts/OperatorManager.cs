@@ -104,7 +104,7 @@ public class OperatorManager : MonoBehaviour {
 
 		foreach(RaycastHit hit in hits)
 		{
-			if(hit.collider.name == "Floor")
+			if(hit.collider.tag == "Floor")
 			{
 				
 				float xPos = Mathf.Floor(hit.point.x / cellWidth) * cellWidth;
@@ -151,7 +151,7 @@ public class OperatorManager : MonoBehaviour {
             TurnObstacleNormal(t.gameObject);
 		}
         selectedObstacle.GetComponentInChildren<Collider>().enabled = true;
-        selectedObstacle.tag = "Untagged";
+        selectedObstacle.tag = "Obstacle";
 		placingObstacle = false;
 		selectedObstacle = null;
 		placingPoint = Vector3.zero;

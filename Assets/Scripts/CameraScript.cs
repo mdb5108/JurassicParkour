@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour {
     {
     	Player = GameObject.FindGameObjectWithTag("Player").transform;
 		Clipper = GameObject.FindGameObjectWithTag("Clipper").transform;
-		mapWidth = GameObject.Find("Floor").transform.localScale.x * 10;
+        mapWidth = 20;
 		Clipper.transform.position -= (Vector3.forward * mapWidth/2 + Vector3.forward);
 		walls = GameObject.FindGameObjectsWithTag("Wall");
 		transform.LookAt(Player.position);
