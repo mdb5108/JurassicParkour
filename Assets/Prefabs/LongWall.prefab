@@ -380,7 +380,7 @@ MonoBehaviour:
   start_axis:
     origin: {x: 1.5, y: 0, z: 0}
     axisNormal: 270
-    distanceFromCenter: 1
+    distanceFromCenter: 0.5
     mirrored: 0
     lockOrientation: 1
     lockedOrientation: 180
@@ -441,7 +441,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: start_axis.distanceFromCenter
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: start_axis.origin.z
