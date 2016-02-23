@@ -18,6 +18,9 @@ public class RunnerController : MonoBehaviour
     private Rigidbody characterRigidbody;
     private Collider characterCollider;
 
+    private bool movingToVault;
+    private Vector3 moveToVaultPosition;
+
     // Use this for initialization
     void Start ()
     {
@@ -50,30 +53,68 @@ public class RunnerController : MonoBehaviour
                     var interactionType = obstacle.get_possible_interaction();
                     bool matching = ((interactionType == Obstacles.way_of_interaction.PASS_UP)   && jumpUp) ||
                                     ((interactionType == Obstacles.way_of_interaction.PASS_DOWN) && jumpDown);
+
                     if(matching
                         && obstacle.CheckApproachAngle(transform.position, transform.forward))
                     {
-                        Animation anim = obstacle.GetComponent<Animation>();
-                        userControl.EnableInput(false);
-                        characterRigidbody.isKinematic = true;
-                        characterCollider.enabled = false;
-                        legacyAnim.clip = anim.clip;
-                        legacyAnim.AddClip(anim.clip, anim.clip.name);
-                        legacyAnim.Play();
-                        break;
+                        //Find nearest point on axis
+                        Vector3 axisOfInteraction = obstacle.get_start_axis_offset(transform.position);
+                        Vector3 pointOnAxis = obstacle.transform.position + axisOfInteraction;
+                        Vector3 closestPointDelta = Vector3.Project(pointOnAxis - transform.position, axisOfInteraction.normalized);
+                        //If the delta is pointing opposite the axis offset we can still
+                        //run up
+                        if(Vector3.Dot(closestPointDelta, axisOfInteraction) < 0)
+                        {
+                            userControl.EnableInput(false);
+                            StartCoroutine(MoveToVault(transform.position + closestPointDelta, axisOfInteraction, obstacle));
+                            break;
+                        }
                     }
                 }
             }
         }
     }
 
+    private IEnumerator MoveToVault(Vector3 position, Vector3 axisNormal, Obstacles obs)
+    {
+        moveToVaultPosition = position;
+        movingToVault = true;
+        while(transform.position != position && Vector3.Dot((position - transform.position), axisNormal) < 0)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        movingToVault = false;
+        StartAnimation(obs);
+    }
+
+    private void FixedUpdate()
+    {
+        if(movingToVault)
+        {
+            Vector3 flatened = moveToVaultPosition - transform.position;
+            flatened = flatened+transform.forward;
+            flatened.y = flatened.z;
+            thirdCharacter.Move(flatened, false, false);
+        }
+    }
+
+    private void StartAnimation(Obstacles obs)
+    {
+        Animation anim = obs.GetComponent<Animation>();
+        characterRigidbody.isKinematic = true;
+        characterCollider.enabled = false;
+        legacyAnim.clip = anim.clip;
+        legacyAnim.AddClip(anim.clip, anim.clip.name);
+        legacyAnim.Play();
+    }
+
     public void AnimationFinished()
     {
-      transform.position = meshRoot.position;
-      meshRoot.position = transform.TransformPoint(Vector3.zero);
-      legacyAnim.RemoveClip(legacyAnim.clip);
-      userControl.EnableInput(true);
-      characterRigidbody.isKinematic = false;
-      characterCollider.enabled = true;
+        transform.position = meshRoot.position;
+        meshRoot.position = transform.TransformPoint(Vector3.zero);
+        legacyAnim.RemoveClip(legacyAnim.clip);
+        userControl.EnableInput(true);
+        characterRigidbody.isKinematic = false;
+        characterCollider.enabled = true;
     }
 }
