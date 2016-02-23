@@ -38,8 +38,9 @@ public class GridScript : MonoBehaviour {
         {
             for (int i = 0; i < gridWidth; i++)
              {
-                Vector3 tempPosition = new Vector3(i - gridWidth/2, -1, j);
+                Vector3 tempPosition = new Vector3(this.transform.position.x + ( i - gridWidth/2 ), -1, this.transform.position .y + j);
                 GameObject tempCube = GameObject.Instantiate(templateCube, tempPosition, Quaternion.identity) as GameObject;
+                tempCube.name = "Grid " + i + "," + j;
                 tempCube.transform.parent = this.transform;
                 currentGrid[i, j] = tempCube;
             }
@@ -51,10 +52,11 @@ public class GridScript : MonoBehaviour {
 
     void deleteGrid()
     {
-        
-        foreach (Transform t in this.transform)
+        Transform[] children = this.GetComponentsInChildren<Transform>();
+        foreach (Transform t in children)
         {
-            DestroyImmediate(t.gameObject);
+            if(t != this.transform)
+             DestroyImmediate(t.gameObject);
         }
         currentGrid = null;
         
