@@ -11,9 +11,9 @@ GameObject:
   - 33: {fileID: 3386752}
   - 65: {fileID: 6550030}
   - 23: {fileID: 2304164}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ GameObject:
   - 111: {fileID: 11154214}
   - 114: {fileID: 11448716}
   - 65: {fileID: 6518186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Overhang
   m_TagString: Obstacle
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,9 +47,9 @@ GameObject:
   - 33: {fileID: 3366668}
   - 65: {fileID: 6508370}
   - 23: {fileID: 2318958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,6 +246,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: angle_approach
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

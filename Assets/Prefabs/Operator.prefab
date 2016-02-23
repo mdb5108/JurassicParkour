@@ -176,11 +176,11 @@ MonoBehaviour:
   selectedObstacle: {fileID: 0}
   placingPoint: {x: 0, y: 0, z: 0}
   OperatorHand:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 133688, guid: 8a1e1beb6b238224591bb1325a2142aa, type: 2}
+  - {fileID: 151076, guid: a298e266688af71409eb68778b4ac407, type: 2}
+  - {fileID: 153106, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
+  - {fileID: 169236, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
+  - {fileID: 160154, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
   cols: []
 --- !u!114 &11463734
 MonoBehaviour:
