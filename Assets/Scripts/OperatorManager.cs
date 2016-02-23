@@ -8,9 +8,9 @@ public class OperatorManager : MonoBehaviour {
 	public float ditanceFromPlayer;
 	public Camera opCamera;
 	public bool placingObstacle;
-	public GameObject selectedObstacle;
+	public Obstacles selectedObstacle;
 	public Vector3 placingPoint;
-	public GameObject[] OperatorHand;
+	public Obstacles[] OperatorHand;
 
 	Transform Player;
 	// Use this for initialization
@@ -49,7 +49,9 @@ public class OperatorManager : MonoBehaviour {
 			}
 		}
 
-			
+			//DEBUG
+
+        
 	}
 
 
@@ -68,10 +70,10 @@ public class OperatorManager : MonoBehaviour {
             {
                 if (selectedObstacle)
                 {
-                    Destroy(selectedObstacle);
+                    Destroy(selectedObstacle.gameObject);
                 }
-                selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as GameObject;
-                selectedObstacle.layer = LayerMask.NameToLayer("IgnorePlayer");
+                selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as Obstacles;
+                selectedObstacle.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
                 selectedObstacle.GetComponentInChildren<Collider>().enabled = false;
                 placingObstacle = true;
             }
@@ -89,7 +91,6 @@ public class OperatorManager : MonoBehaviour {
 		{
 			if(hit.collider.name == "Floor")
 			{
-
 				
 				float xPos = Mathf.Floor(hit.point.x / cellWidth) * cellWidth;
 				float zPos = Mathf.Floor(hit.point.z / cellLength) * cellLength;
@@ -128,9 +129,8 @@ public class OperatorManager : MonoBehaviour {
 
 	void placeObstacle()
 	{
-
 		selectedObstacle.transform.position = placingPoint;
-        TurnObstacleNormal(selectedObstacle);
+        TurnObstacleNormal(selectedObstacle.gameObject);
 		foreach(Transform t in selectedObstacle.transform)
 		{
             TurnObstacleNormal(t.gameObject);
@@ -145,7 +145,6 @@ public class OperatorManager : MonoBehaviour {
 
 	void resetObstacle()
 	{
-
 		selectedObstacle.transform.position = 200 * Vector3.up;
 		placingObstacle = false;
 		placingPoint = Vector3.zero;
@@ -157,21 +156,33 @@ public class OperatorManager : MonoBehaviour {
 
 	}
 
+   public Vector3 obstacleBounds;
 
-
-	public Collider[] cols;
+    public Collider[] cols;
 	bool collidingWithOtherObjects()
 	{
-		cols = Physics.OverlapBox(selectedObstacle.transform.position,.49f * selectedObstacle.transform.localScale, Quaternion.identity);
-		foreach(Collider col in cols)
-		{
-			if(col.gameObject.tag != "Floor" && col.gameObject.tag != "Obstacle")
-			{
-				return true;
-			}
-		}
+        obstacleBounds = new Vector3(selectedObstacle.get_obst_len_wid().x, 5, selectedObstacle.get_obst_len_wid().y);
+        cols = Physics.OverlapBox(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds *.49f, Quaternion.identity);
 
-
-		return false;
+        foreach (Collider col in cols)
+        {
+            if (col.gameObject.tag != "Floor" && col.gameObject.tag != "InnerObstacle")
+            {
+                return true;
+            }
+        }
+         
+    	return false;
 	}
+    // UNCOMMENT IF DEBUGGING OBSTACLE SIZE
+    //void OnDrawGizmos()
+    //{
+    //    if (selectedObstacle && placingObstacle)
+    //    {
+    //        Gizmos.color = Color.blue;
+    //        Gizmos.DrawCube(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds);
+    //    }
+       
+    //}
+
 }

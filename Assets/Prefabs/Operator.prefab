@@ -168,19 +168,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6f7d0c81e51d54da51eb31aa0d23a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellWidth: 2
-  cellLength: 2
+  cellWidth: 1
+  cellLength: 1
   ditanceFromPlayer: 6
   opCamera: {fileID: 0}
   placingObstacle: 0
   selectedObstacle: {fileID: 0}
   placingPoint: {x: 0, y: 0, z: 0}
   OperatorHand:
-  - {fileID: 133688, guid: 8a1e1beb6b238224591bb1325a2142aa, type: 2}
-  - {fileID: 151076, guid: a298e266688af71409eb68778b4ac407, type: 2}
-  - {fileID: 153106, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
-  - {fileID: 169236, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
-  - {fileID: 160154, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
+  - {fileID: 11439770, guid: 8a1e1beb6b238224591bb1325a2142aa, type: 2}
+  - {fileID: 11448716, guid: a298e266688af71409eb68778b4ac407, type: 2}
+  - {fileID: 11400228, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
+  - {fileID: 11491172, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
+  - {fileID: 11428398, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
+  obstacleBounds: {x: 0, y: 0, z: 0}
   cols: []
 --- !u!114 &11463734
 MonoBehaviour:
