@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2337792}
   m_Layer: 9
   m_Name: floor_back
-  m_TagString: Obstacle
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ GameObject:
   - 23: {fileID: 2397232}
   m_Layer: 9
   m_Name: side_wall
-  m_TagString: Obstacle
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ GameObject:
   - 23: {fileID: 2306040}
   m_Layer: 9
   m_Name: floor_front
-  m_TagString: Obstacle
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ GameObject:
   - 23: {fileID: 2397372}
   m_Layer: 9
   m_Name: pit
-  m_TagString: Obstacle
+  m_TagString: InnerObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   angle_approach: 45
   angle_threshold: 30
   possible_interaction: 1
-  obst_len_wid: {x: 5, y: 3}
+  obst_len_wid: {x: 5, y: 5}
   start_axis:
     axisNormal: 90
     distanceFromCenter: 1
@@ -413,11 +413,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: obst_len_wid.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Obstacle
+      value: InnerObstacle
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: angle_approach
