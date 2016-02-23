@@ -27,6 +27,8 @@ public class Obstacles : MonoBehaviour {
         public float axisNormal;
         public float distanceFromCenter;
         public bool mirrored;
+        public bool lockOrientation;
+        public float lockedOrientation;
     }
 
 
@@ -113,5 +115,19 @@ public class Obstacles : MonoBehaviour {
         return get_start_axis_offset(position) + transform.position + start_axis.origin;
     }
 
+    public bool get_to_lock_orientation()
+    {
+        return start_axis.lockOrientation;
+    }
 
+    public Vector3 get_orientation_facing(Vector3 position)
+    {
+        Vector3 diff = position - transform.position;
+        Vector3 facing = transform.TransformDirection(Quaternion.AngleAxis(start_axis.lockedOrientation, Vector3.up)*Vector3.forward);
+        if(Vector3.Dot(diff, transform.forward) < 0)
+        {
+            facing = -facing;
+        }
+        return facing;
+    }
 }

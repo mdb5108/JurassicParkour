@@ -101,6 +101,11 @@ public class RunnerController : MonoBehaviour
 
     private void StartAnimation(Obstacles obs)
     {
+        if(obs.get_to_lock_orientation())
+        {
+            transform.forward = obs.get_orientation_facing(transform.position);
+        }
+
         Animation anim = obs.GetComponent<Animation>();
         characterRigidbody.isKinematic = true;
         characterCollider.enabled = false;
