@@ -175,7 +175,11 @@ MonoBehaviour:
   placingObstacle: 0
   selectedObstacle: {fileID: 0}
   placingPoint: {x: 0, y: 0, z: 0}
-  obstacleList:
+  OperatorHand:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   cols: []
 --- !u!114 &11463734

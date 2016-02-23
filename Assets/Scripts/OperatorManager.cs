@@ -10,7 +10,7 @@ public class OperatorManager : MonoBehaviour {
 	public bool placingObstacle;
 	public GameObject selectedObstacle;
 	public Vector3 placingPoint;
-	public GameObject[] obstacleList;
+	public GameObject[] OperatorHand;
 
 	Transform Player;
 	// Use this for initialization
@@ -25,17 +25,10 @@ public class OperatorManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if(Input.GetMouseButton(0))
-		{
-			if(Input.GetKeyDown(KeyCode.LeftShift))
-			{
-				// ONLY FOR TESTING, CHANGE TO UI INPUT
-				selectedObstacle = obstacleList[0];
-				selectedObstacle.layer = LayerMask.NameToLayer("IgnorePlayer");
-                selectedObstacle.GetComponentInChildren<Collider>().enabled = false;
-				placingObstacle = true;
-			}
+        checkNumberKey();
 
+		if(Input.GetMouseButtonUp(0))
+		{
 			if(placingObstacle)
 			{
 				setObstacle();
@@ -63,7 +56,24 @@ public class OperatorManager : MonoBehaviour {
 
     void checkNumberKey()
     {
-        
+        if (Input.anyKeyDown)
+        {
+            string keyPreseed = Input.inputString;
+            int keyNum = int.Parse(keyPreseed);
+            // KEYNUM NO OF CARDS IN HAND
+            if (keyNum >= 1 && keyNum <= 5)
+            {
+                if (selectedObstacle)
+                {
+                    Destroy(selectedObstacle);
+                }
+                selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as GameObject;
+                selectedObstacle.layer = LayerMask.NameToLayer("IgnorePlayer");
+                selectedObstacle.GetComponentInChildren<Collider>().enabled = false;
+                placingObstacle = true;
+            }
+           
+        }
     }
 
 	void setObstacle()
