@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OperatorManager : MonoBehaviour {
 
-
+    
 	public float cellWidth, cellLength;
 	public float ditanceFromPlayer;
 	public Camera opCamera;
@@ -11,6 +11,8 @@ public class OperatorManager : MonoBehaviour {
 	public Obstacles selectedObstacle;
 	public Vector3 placingPoint;
 	public Obstacles[] OperatorHand;
+
+
 
 	Transform Player;
     //changes by shreyas
@@ -96,6 +98,9 @@ public class OperatorManager : MonoBehaviour {
         }
     }
 
+
+   
+
 	void setObstacle()
 	{
 		Ray ray = opCamera.ScreenPointToRay(Input.mousePosition);
@@ -133,14 +138,7 @@ public class OperatorManager : MonoBehaviour {
 		}
 	}
 
-    void TurnObstacleNormal(GameObject go)
-    {
-        go.layer = LayerMask.NameToLayer("Default");
-        MeshRenderer m = go.GetComponent<MeshRenderer>();
-
-        if(m != null)
-            m.material.color = Color.white;
-    }
+   
 
 	void placeObstacle()
 	{
@@ -152,9 +150,21 @@ public class OperatorManager : MonoBehaviour {
 		}
         selectedObstacle.GetComponentInChildren<Collider>().enabled = true;
         selectedObstacle.tag = "Obstacle";
-		placingObstacle = false;
-		selectedObstacle = null;
 		placingPoint = Vector3.zero;
+
+        if (Random.Range(0, 2) == 0)
+        {
+            selectedObstacle.transform.localScale = new Vector3(1, 0, 1);
+            placingObstacle = false;
+            StartCoroutine(applyGrowingAnimation(selectedObstacle.gameObject));
+            selectedObstacle = null;
+
+        }
+        else
+        {
+            applyFallingAnimation();
+        }
+
         //begin changes by shreyas
         if (num_key_pressed != null)
         {
@@ -163,7 +173,44 @@ public class OperatorManager : MonoBehaviour {
         //end changes
 	}
 
-	void resetObstacle()
+    void TurnObstacleNormal(GameObject go)
+    {
+        go.layer = LayerMask.NameToLayer("Default");
+        MeshRenderer m = go.GetComponent<MeshRenderer>();
+
+        if (m != null)
+            m.material.color = Color.white;
+    }
+
+    void applyFallingAnimation()
+    {
+        selectedObstacle.transform.position += (Vector3.up * 10);
+        selectedObstacle.gameObject.AddComponent<Rigidbody>();
+        selectedObstacle.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        selectedObstacle.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.down * 25, ForceMode.Impulse);
+        placingObstacle = false;
+        selectedObstacle = null;
+    }
+
+    IEnumerator applyGrowingAnimation(GameObject g)
+    {
+      
+        while (g.transform.localScale.y < 1)
+        {
+            g.transform.localScale += (Vector3.up * 1f * Time.deltaTime);
+            yield return 0;
+
+        }
+
+        if (g.transform.localScale.y >= 1)
+        {
+            g.transform.localScale = Vector3.one;
+        }
+
+
+    }
+
+    void resetObstacle()
 	{
 		selectedObstacle.transform.position = 200 * Vector3.up;
 		placingObstacle = false;
