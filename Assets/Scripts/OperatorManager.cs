@@ -146,7 +146,7 @@ public class OperatorManager : MonoBehaviour {
 	{
 		selectedObstacle.transform.position = placingPoint;
         TurnObstacleNormal(selectedObstacle.gameObject);
-		foreach(Transform t in selectedObstacle.transform)
+		foreach(Transform t in selectedObstacle.GetComponentsInChildren<Transform>())
 		{
             TurnObstacleNormal(t.gameObject);
 		}
