@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139922}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: -2}
+  m_LocalPosition: {x: 1, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 0, z: 3}
   m_Children: []
   m_Father: {fileID: 401126}
@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164842}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 0, z: 3}
   m_Children: []
   m_Father: {fileID: 401126}
@@ -149,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110258}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 1, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 0, z: 3}
   m_Children: []
   m_Father: {fileID: 401126}
@@ -376,7 +376,7 @@ MonoBehaviour:
   angle_approach: 45
   angle_threshold: 30
   possible_interaction: 1
-  obst_len_wid: {x: 5, y: 5}
+  obst_len_wid: {x: 3, y: 5}
   start_axis:
     origin: {x: 1.5, y: 0, z: 0}
     axisNormal: 270
