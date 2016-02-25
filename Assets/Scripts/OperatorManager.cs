@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class OperatorManager : MonoBehaviour {
 
@@ -11,8 +12,9 @@ public class OperatorManager : MonoBehaviour {
 	public Obstacles selectedObstacle;
 	public Vector3 placingPoint;
 	public Obstacles[] OperatorHand;
-
-
+    public float[] coolDownDurations, coolDownCounters;
+    public Image[] cardMasks;
+    public bool[] allowMove;
 
 	Transform Player;
     //changes by shreyas
@@ -31,6 +33,7 @@ public class OperatorManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+        updateCooldown();
         checkNumberKey();
 
 		
@@ -55,11 +58,29 @@ public class OperatorManager : MonoBehaviour {
 			}
 		}
 
-			//DEBUG
-
         
 	}
 
+
+    void updateCooldown()
+    {
+        for (int i = 0; i < coolDownDurations.Length; i++)
+        {
+            if (coolDownCounters[i] < coolDownDurations[i])
+            {
+                coolDownCounters[i] += Time.deltaTime;
+                cardMasks[i].fillAmount = 1 - (coolDownCounters[i] / coolDownDurations[i]);
+                allowMove[i] = false;
+            }
+            else
+            {
+                allowMove[i] = true;
+            }
+        }
+    }
+
+
+    public int currentKey;
 
     void checkNumberKey()
     {
@@ -76,14 +97,26 @@ public class OperatorManager : MonoBehaviour {
             // KEYNUM NO OF CARDS IN HAND
             if (keyNum >= 1 && keyNum <= 5)
             {
-                if (selectedObstacle)
+                if (allowMove[keyNum - 1])
                 {
-                    Destroy(selectedObstacle.gameObject);
+
+                    if (selectedObstacle != null)
+                    {
+                        Destroy(selectedObstacle.gameObject);
+                    }
+
+                    selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as Obstacles;
+                    selectedObstacle.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
+
+                    foreach (Collider col in selectedObstacle.GetComponentsInChildren<Collider>())
+                    {
+                        col.enabled = false;
+                    }
+
+                    placingObstacle = true;
+                    currentKey = keyNum;
                 }
-                selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as Obstacles;
-                selectedObstacle.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
-                selectedObstacle.GetComponentInChildren<Collider>().enabled = false;
-                placingObstacle = true;
+              
 
                 // code changes by Shreyas
 
@@ -148,9 +181,14 @@ public class OperatorManager : MonoBehaviour {
 		{
             TurnObstacleNormal(t.gameObject);
 		}
-        selectedObstacle.GetComponentInChildren<Collider>().enabled = true;
+
+        foreach (Collider col in selectedObstacle.GetComponentsInChildren<Collider>())
+        {
+            col.enabled = true;
+        }
+
         selectedObstacle.tag = "Obstacle";
-		placingPoint = Vector3.zero;
+	
 
         if (Random.Range(0, 2) == 0)
         {
@@ -162,9 +200,18 @@ public class OperatorManager : MonoBehaviour {
         }
         else
         {
-            applyFallingAnimation();
+            selectedObstacle.transform.position += (Vector3.up * 10);
+            placingObstacle = false;
+            StartCoroutine(applyFallingAnimation(selectedObstacle.gameObject, placingPoint));
+            selectedObstacle = null;
         }
 
+
+        allowMove[currentKey - 1] = false;
+        coolDownCounters[currentKey - 1] = 0;
+
+
+        placingPoint = Vector3.zero;
         //begin changes by shreyas
         if (num_key_pressed != null)
         {
@@ -182,17 +229,20 @@ public class OperatorManager : MonoBehaviour {
             m.material.color = Color.white;
     }
 
-    void applyFallingAnimation()
+    IEnumerator applyFallingAnimation(GameObject g, Vector3 destinationPoint)
     {
-        selectedObstacle.transform.position += (Vector3.up * 10);
-        selectedObstacle.gameObject.AddComponent<Rigidbody>();
-        selectedObstacle.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        selectedObstacle.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.down * 25, ForceMode.Impulse);
-        placingObstacle = false;
-        selectedObstacle = null;
+
+        while (g.transform.position.y > destinationPoint.y)
+        {
+            g.transform.position -= (Vector3.up * 20f * Time.deltaTime);
+            yield return 0;
+        }
+
+        g.transform.position = destinationPoint;
+       
     }
 
-    IEnumerator applyGrowingAnimation(GameObject g)
+     IEnumerator applyGrowingAnimation(GameObject g)
     {
       
         while (g.transform.localScale.y < 1)
@@ -202,12 +252,9 @@ public class OperatorManager : MonoBehaviour {
 
         }
 
-        if (g.transform.localScale.y >= 1)
-        {
-            g.transform.localScale = Vector3.one;
-        }
-
-
+        
+        g.transform.localScale = Vector3.one;
+       
     }
 
     void resetObstacle()
