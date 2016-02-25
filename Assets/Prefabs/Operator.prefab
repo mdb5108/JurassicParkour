@@ -98,8 +98,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162596}
-  m_LocalRotation: {x: 0.25881907, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 10.1, z: -32.8}
+  m_LocalRotation: {x: 0.28398082, y: 0, z: 0, w: 0.95883}
+  m_LocalPosition: {x: 0, y: 28.9, z: -37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 423602}
@@ -181,6 +181,26 @@ MonoBehaviour:
   - {fileID: 11400228, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
   - {fileID: 11491172, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
   - {fileID: 11428398, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
+  coolDownDurations:
+  - 5
+  - 4
+  - 3
+  - 2
+  - 1
+  coolDownCounters:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  cardMasks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allowMove: 0000000000
+  currentKey: 0
   obstacleBounds: {x: 0, y: 0, z: 0}
   cols: []
 --- !u!114 &11463734
