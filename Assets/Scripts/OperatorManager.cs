@@ -182,11 +182,12 @@ public class OperatorManager : MonoBehaviour {
 	bool collidingWithOtherObjects()
 	{
         obstacleBounds = new Vector3(selectedObstacle.get_obst_len_wid().x, 5, selectedObstacle.get_obst_len_wid().y);
-        cols = Physics.OverlapBox(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds *.49f, Quaternion.identity);
+        int obstacleLayer = LayerMask.NameToLayer("Default");
+        cols = Physics.OverlapBox(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds *.49f, Quaternion.identity, 1 << obstacleLayer);
 
         foreach (Collider col in cols)
         {
-            if (col.gameObject.tag != "Floor" && col.gameObject.tag != "InnerObstacle")
+            if(col.gameObject.tag != "Floor")
             {
                 return true;
             }
@@ -202,7 +203,6 @@ public class OperatorManager : MonoBehaviour {
     //        Gizmos.color = Color.blue;
     //        Gizmos.DrawCube(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds);
     //    }
-       
     //}
 
 }
