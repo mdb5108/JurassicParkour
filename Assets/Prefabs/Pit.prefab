@@ -28,6 +28,7 @@ GameObject:
   - 4: {fileID: 420284}
   - 114: {fileID: 11428398}
   - 65: {fileID: 6579844}
+  - 111: {fileID: 11117250}
   m_Layer: 9
   m_Name: Pit
   m_TagString: Obstacle
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.125069, y: -5.2748227, z: -28.761862}
+  m_LocalPosition: {x: 8.483666, y: 27.929678, z: 8.55562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 417016}
@@ -232,7 +233,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99, y: 1, z: 0.99}
+  m_Size: {x: 2.99, y: 1, z: 0.99}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6544496
 BoxCollider:
@@ -270,6 +271,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1, z: 3}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!111 &11117250
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160154}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 355eab81edecb4c418d0ed9090cc5c6d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 355eab81edecb4c418d0ed9090cc5c6d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11428398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -390,6 +406,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_PlayAutomatically
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 2.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.z
+      value: 0.99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
