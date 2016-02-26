@@ -279,7 +279,8 @@ public class OperatorManager : MonoBehaviour {
 	{
         obstacleBounds = new Vector3(selectedObstacle.get_obst_len_wid().x, 5, selectedObstacle.get_obst_len_wid().y);
         int obstacleLayer = LayerMask.NameToLayer("Default");
-        cols = Physics.OverlapBox(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds *.49f, Quaternion.identity, 1 << obstacleLayer);
+        int operatorCullLayer = LayerMask.NameToLayer("IgnoreOperator");
+        cols = Physics.OverlapBox(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds *.49f, Quaternion.identity, (1 << obstacleLayer) | (1 << operatorCullLayer));
 
         foreach (Collider col in cols)
         {
