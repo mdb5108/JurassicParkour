@@ -699,7 +699,7 @@ MonoBehaviour:
   - {fileID: 11491172, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
   - {fileID: 11428398, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
   coolDownDurations:
-  - 5
+  - 1
   - 4
   - 3
   - 2
