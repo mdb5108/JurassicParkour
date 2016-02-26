@@ -685,8 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6f7d0c81e51d54da51eb31aa0d23a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellWidth: 1
-  cellLength: 1
+  cellWidth: 9
+  cellLength: 10.5
   ditanceFromPlayer: 6
   opCamera: {fileID: 0}
   placingObstacle: 0
