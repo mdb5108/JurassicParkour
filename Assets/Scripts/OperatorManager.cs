@@ -106,8 +106,10 @@ public class OperatorManager : MonoBehaviour {
                     }
 
                     selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as Obstacles;
-                    selectedObstacle.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
-
+                    foreach(Transform t in selectedObstacle.GetComponentsInChildren<Transform>())
+                    {
+                        t.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
+                    }
                     foreach (Collider col in selectedObstacle.GetComponentsInChildren<Collider>())
                     {
                         col.enabled = false;
