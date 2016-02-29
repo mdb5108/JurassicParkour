@@ -883,6 +883,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 414346}
   - 95: {fileID: 9560338}
+  - 114: {fileID: 11477624}
   m_Layer: 0
   m_Name: anubis
   m_TagString: Untagged
@@ -1053,7 +1054,6 @@ GameObject:
   - 114: {fileID: 11456160}
   - 114: {fileID: 11457418}
   - 114: {fileID: 11492028}
-  - 111: {fileID: 11157348}
   m_Layer: 0
   m_Name: Runner
   m_TagString: Player
@@ -2881,20 +2881,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &11157348
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172124}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &11403538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2906,7 +2892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44af8091779fcb40801d5b284353dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 428128}
+  m_Target: {fileID: 414346}
   m_AutoTargetPlayer: 0
   m_UpdateType: 0
   m_MoveSpeed: 100
@@ -2959,11 +2945,23 @@ MonoBehaviour:
   m_StationaryTurnSpeed: 180
   m_JumpPower: 3
   m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
+  m_RunCycleLegOffset: 0.25
   m_MoveSpeedMultiplier: 500
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 1
   m_Animator: {fileID: 9560338}
+--- !u!114 &11477624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db1a864e88964645b44f6f1d84c328a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11492028}
 --- !u!114 &11492028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2975,6 +2973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebe1f490339ffb4089787dbbcac2975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetAnimator: {fileID: 9560338}
+  animationRoot: {fileID: 414346}
 --- !u!124 &12479024
 Behaviour:
   m_ObjectHideFlags: 1

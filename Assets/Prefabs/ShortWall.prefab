@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9e42f74e9054a4eb413682b4dc1809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation_trigger: Dash
   allowed_actions: 01000000
   angle_approach: 0
   angle_threshold: 45
@@ -152,7 +153,7 @@ MonoBehaviour:
   start_axis:
     origin: {x: 0, y: 0, z: 0}
     axisNormal: 0
-    distanceFromCenter: 1
+    distanceFromCenter: 2
     mirrored: 1
     lockOrientation: 0
     lockedOrientation: 0
@@ -237,11 +238,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: start_axis.distanceFromCenter
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: start_axis.mirrored
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: animation_trigger
+      value: Dash
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

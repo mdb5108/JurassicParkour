@@ -12,8 +12,10 @@ public class RunnerController : MonoBehaviour
 
     private ThirdPersonCharacter thirdCharacter;
     private ThirdPersonUserControl userControl;
-    private Animation legacyAnim;
-    private Transform meshRoot;
+    public Animator targetAnimator;
+    public Transform animationRoot;
+    private Vector3 animationRootOrigin;
+    private Quaternion animationRootOriginRot;
 
     private Rigidbody characterRigidbody;
     private Collider characterCollider;
@@ -27,9 +29,8 @@ public class RunnerController : MonoBehaviour
         radiusOfInteraction = GetComponent<Collider>().bounds.extents.x;
         thirdCharacter = GetComponent<ThirdPersonCharacter>();
         userControl = GetComponent<ThirdPersonUserControl>();
-        legacyAnim = GetComponent<Animation>();
-        meshRoot = transform.Find("Mesh");
-        Assert.IsTrue( meshRoot != null );
+        animationRootOrigin = animationRoot.localPosition;
+        animationRootOriginRot = animationRoot.localRotation;
         characterCollider = GetComponent<Collider>();
         characterRigidbody = GetComponent<Rigidbody>();
     }
@@ -106,19 +107,17 @@ public class RunnerController : MonoBehaviour
             transform.forward = obs.get_orientation_facing(transform.position);
         }
 
-        Animation anim = obs.GetComponent<Animation>();
+        string trigger = obs.get_animation_trigger();
         characterRigidbody.isKinematic = true;
         characterCollider.enabled = false;
-        legacyAnim.clip = anim.clip;
-        legacyAnim.AddClip(anim.clip, anim.clip.name);
-        legacyAnim.Play();
+        targetAnimator.SetTrigger(trigger);
     }
 
     public void AnimationFinished()
     {
-        transform.position = meshRoot.position;
-        meshRoot.position = transform.TransformPoint(Vector3.zero);
-        legacyAnim.RemoveClip(legacyAnim.clip);
+        transform.position = animationRoot.position - animationRootOrigin;
+        animationRoot.localPosition = animationRootOrigin;
+        animationRoot.localRotation = animationRootOriginRot;
         userControl.EnableInput(true);
         characterRigidbody.isKinematic = false;
         characterCollider.enabled = true;

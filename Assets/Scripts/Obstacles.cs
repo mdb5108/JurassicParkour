@@ -33,6 +33,8 @@ public class Obstacles : MonoBehaviour {
 
 
     [SerializeField]
+    private string animation_trigger;
+    [SerializeField]
     private actions[] allowed_actions;
     [SerializeField]
     private float angle_approach;
@@ -72,6 +74,11 @@ public class Obstacles : MonoBehaviour {
       float angle = Vector3.Angle(playerForward, approachDir);
 
       return angle <= get_angle_threshold();
+  }
+
+  public string get_animation_trigger()
+  {
+    return animation_trigger;
   }
 
     public actions[] get_allowed_actions()
