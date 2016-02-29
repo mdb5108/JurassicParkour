@@ -8,7 +8,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class RunnerController : MonoBehaviour
 {
     private float radiusOfInteraction;
-    private readonly static float INTERACTION_LENGTH = 3f;
+    private readonly static float INTERACTION_LENGTH = 4f;
 
     private ThirdPersonCharacter thirdCharacter;
     private ThirdPersonUserControl userControl;
