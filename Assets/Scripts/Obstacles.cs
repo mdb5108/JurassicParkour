@@ -57,8 +57,20 @@ public class Obstacles : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+#if UNITY_EDITOR
+      DrawAxisOfInteraction();
+#endif
 	}
+
+  void DrawAxisOfInteraction()
+  {
+      var player = GameObject.FindWithTag("Player");
+      Vector3 axisOffset = get_start_axis_offset(player.transform.position);
+      Vector3 lineOfAxis = Vector3.Cross(axisOffset, Vector3.up).normalized;
+      Vector3 pointOnAxis = get_start_axis_point_on_line(player.transform.position);
+      float lineLength = 10;
+      Debug.DrawLine(pointOnAxis-(lineLength/2)*lineOfAxis, pointOnAxis + lineLength*lineOfAxis, Color.red);
+  }
 
   public bool CheckApproachAngle(Vector3 position, Vector3 playerForward)
   {
