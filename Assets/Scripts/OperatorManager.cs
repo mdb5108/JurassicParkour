@@ -121,7 +121,7 @@ public class OperatorManager : MonoBehaviour {
                         Destroy(selectedObstacle.gameObject);
                     }
 
-                    selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as Obstacles;
+                    selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, OperatorHand[keyNum - 1].transform.localRotation) as Obstacles;
                     foreach(Transform t in selectedObstacle.GetComponentsInChildren<Transform>())
                     {
                         t.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
