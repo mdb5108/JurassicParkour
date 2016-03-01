@@ -111,6 +111,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 461474}
   - 114: {fileID: 11453650}
+  - 82: {fileID: 8227652}
+  - 114: {fileID: 11485312}
   m_Layer: 0
   m_Name: OperatorManager
   m_TagString: Untagged
@@ -387,6 +389,80 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!82 &8227652
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153082}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!92 &9291694
 Behaviour:
   m_ObjectHideFlags: 1
@@ -935,11 +1011,11 @@ MonoBehaviour:
   selectedObstacle: {fileID: 0}
   placingPoint: {x: 0, y: 0, z: 0}
   OperatorHand:
-  - {fileID: 11439770, guid: 8a1e1beb6b238224591bb1325a2142aa, type: 2}
-  - {fileID: 11448716, guid: a298e266688af71409eb68778b4ac407, type: 2}
-  - {fileID: 11400228, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
-  - {fileID: 11491172, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
-  - {fileID: 11428398, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
+  - {fileID: 11410504, guid: 83dba4dff1ea16142a9fc5af78980e3a, type: 2}
+  - {fileID: 11401184, guid: 017fe31a8c3fc3947beb0d1f4b3c121f, type: 2}
+  - {fileID: 11468768, guid: 5d7670f311e59b44691fb8ae36c29fd3, type: 2}
+  - {fileID: 11475256, guid: d96b54b2e635b9b4898b955fc8bb1b1e, type: 2}
+  - {fileID: 11412152, guid: a67b6585c22e51242a9f49db98dc8961, type: 2}
   - {fileID: 11432186, guid: b19e075b59a7e6e45b8395e09d04e928, type: 2}
   coolDownDurations:
   - 1
@@ -1075,6 +1151,21 @@ MonoBehaviour:
   m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11485312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800c1cbfb8e19c64cb437e42b4388d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClipNames:
+  - ObstacleLand
+  audioClips:
+  - {fileID: 8300000, guid: 4bc8cc5f351e3684e9bb2d9a78b8ee3d, type: 3}
 --- !u!114 &11486122
 MonoBehaviour:
   m_ObjectHideFlags: 1

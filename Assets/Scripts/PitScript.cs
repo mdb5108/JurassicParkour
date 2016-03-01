@@ -17,7 +17,7 @@ public class PitScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Floor")
         {
-            col.transform.position -= (Vector3.up * 1f);
+            col.GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 }

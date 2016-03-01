@@ -23,9 +23,16 @@ public class RunnerController : MonoBehaviour
     private bool movingToVault;
     private Vector3 moveToVaultPosition;
 
+    private Obstacles.Fatigue temp_fatigue;
+    [SerializeField]
+    private Obstacles.Fatigue fatigue_pool;
+    private Obstacles.Fatigue fatigue_pool_start;
+
     // Use this for initialization
     void Start ()
     {
+        targetAnimator.GetBehaviour<StateSoundBehaviour>().soundBank = targetAnimator.GetComponent<SoundBank>();
+
         radiusOfInteraction = GetComponent<Collider>().bounds.extents.x;
         thirdCharacter = GetComponent<ThirdPersonCharacter>();
         userControl = GetComponent<ThirdPersonUserControl>();
@@ -33,6 +40,8 @@ public class RunnerController : MonoBehaviour
         animationRootOriginRot = animationRoot.localRotation;
         characterCollider = GetComponent<Collider>();
         characterRigidbody = GetComponent<Rigidbody>();
+        fatigue_pool_start = fatigue_pool;
+
     }
 
     // Update is called once per frame
@@ -111,6 +120,9 @@ public class RunnerController : MonoBehaviour
         characterRigidbody.isKinematic = true;
         characterCollider.enabled = false;
         targetAnimator.SetTrigger(trigger);
+        
+        //start of code changes by Shreyas
+        temp_fatigue =  obs.get_fatigue();
     }
 
     public void AnimationFinished()
@@ -121,5 +133,108 @@ public class RunnerController : MonoBehaviour
         userControl.EnableInput(true);
         characterRigidbody.isKinematic = false;
         characterCollider.enabled = true;
+
+        //start of code changes by Shreyas        
+        ColorBody();
+        
+
     }
+
+    public void ColorBody()
+    {
+        fatigue_pool.arms -= temp_fatigue.arms;
+        fatigue_pool.core -= temp_fatigue.core;
+        fatigue_pool.legs -= temp_fatigue.legs;
+
+        
+        if (fatigue_pool.arms <= 20 / 100 * fatigue_pool_start.arms)
+        {
+            SetBodyColor("arms","red");
+        }
+        else if (fatigue_pool.arms <= 50 / 100 * fatigue_pool_start.arms)
+        {
+            SetBodyColor("arms", "yellow");
+        }
+
+
+        if (fatigue_pool.core <= 20 / 100 * fatigue_pool_start.core)
+        {
+            SetBodyColor("core", "red");
+        }
+        else if(fatigue_pool.core <= 50 / 100 * fatigue_pool_start.core)
+        {
+            SetBodyColor("core", "yellow");
+        }
+
+
+        if (fatigue_pool.legs <= 20 / 100 * fatigue_pool_start.legs)
+        {
+            SetBodyColor("legs", "red");
+        }
+        else if(fatigue_pool.legs <= 50 / 100 * fatigue_pool_start.legs)
+        {
+            SetBodyColor("legs", "yellow");
+        }
+        
+
+    }   
+
+    void SetBodyColor(string i_body_part,string i_color)
+    {
+        switch (i_body_part)
+        {
+            case "core":
+                {
+                    switch (i_color)
+                    {
+                        case "yellow":
+                            break;
+
+                        case "red":
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                break;
+
+            case "arms":
+                {
+                    switch (i_color)
+                    {
+                        case "yellow":
+                            break;
+
+                        case "red":
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                break;
+
+            case "legs":
+                {
+                    switch (i_color)
+                    {
+                        case "yellow":
+                            break;
+
+                        case "red":
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
 }

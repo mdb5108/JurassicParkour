@@ -169,7 +169,7 @@ public class OperatorManager : MonoBehaviour {
 			if(hit.collider.tag == "Floor")
 			{
 				
-				float xPos = Mathf.Floor(hit.point.x / cellWidth) * cellWidth;
+				float xPos = 0;
 				float zPos = Mathf.Floor(hit.point.z / cellLength) * cellLength;
 				placingPoint = new Vector3(xPos,0,zPos);
 
@@ -307,6 +307,7 @@ public class OperatorManager : MonoBehaviour {
         }
 
         g.transform.position = destinationPoint;
+        GetComponent<SoundBank>().PlaySound("ObstacleLand");
        
     }
 
