@@ -20274,9 +20274,13 @@ Prefab:
       propertyPath: distance
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 2071468, guid: 958ac83825c459f409c63c1f2c83daeb, type: 2}
-      propertyPath: orthographic size
-      value: 20
+    - target: {fileID: 11453650, guid: 958ac83825c459f409c63c1f2c83daeb, type: 2}
+      propertyPath: cellLength
+      value: 10.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11463734, guid: 958ac83825c459f409c63c1f2c83daeb, type: 2}
+      propertyPath: zDistance
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 958ac83825c459f409c63c1f2c83daeb, type: 2}
