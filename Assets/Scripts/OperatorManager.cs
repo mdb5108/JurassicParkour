@@ -55,7 +55,7 @@ public class OperatorManager : MonoBehaviour {
 			{
                 if (selectedObstacle.tag == "ImpossibleWall")
                 {
-                    if (Vector3.Distance(placingPoint, Player.position) > selectedObstacle.get_obst_len_wid().y / 2)
+                    if ((placingPoint.z - selectedObstacle.get_obst_len_wid().y / 2) - Player.position.z > 2)
                     {
                         placeObstacle();
                     }
@@ -178,7 +178,7 @@ public class OperatorManager : MonoBehaviour {
 
                 if (selectedObstacle.tag == "ImpossibleWall")
                 {
-                    if (Vector3.Distance(placingPoint, Player.position) > selectedObstacle.get_obst_len_wid().y/2)
+                    if ((placingPoint.z - selectedObstacle.get_obst_len_wid().y / 2) - Player.position.z  > 2)
                     {
                         foreach (MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
                         {
