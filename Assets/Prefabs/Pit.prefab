@@ -294,6 +294,10 @@ MonoBehaviour:
     mirrored: 1
     lockOrientation: 0
     lockedOrientation: 0
+  obst_end:
+    core: 0
+    arms: 0
+    legs: 1
 --- !u!114 &11451332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,6 +423,9 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: animation_trigger
       value: DiveRoll
+      objectReference: {fileID: 0}
+      propertyPath: obst_end.legs
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

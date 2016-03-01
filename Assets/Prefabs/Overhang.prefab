@@ -141,6 +141,10 @@ MonoBehaviour:
     mirrored: 1
     lockOrientation: 0
     lockedOrientation: 0
+  obst_end:
+    core: 1
+    arms: 0
+    legs: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -211,6 +215,8 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: start_axis.lockedOrientation
       value: 0
+      propertyPath: obst_end.core
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

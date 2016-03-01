@@ -47,6 +47,17 @@ public class Obstacles : MonoBehaviour {
     [SerializeField]
     private StartAxis start_axis;
 
+    [System.Serializable]
+    public struct Fatigue
+    {        
+        public float arms;
+        public float core;
+        public float legs;
+    }
+
+    [SerializeField]
+    private Fatigue obst_end;
+
 
     // Use this for initialization
     void Start()
@@ -71,6 +82,12 @@ public class Obstacles : MonoBehaviour {
       float lineLength = 10;
       Debug.DrawLine(pointOnAxis-(lineLength/2)*lineOfAxis, pointOnAxis + lineLength*lineOfAxis, Color.red);
   }
+
+   
+   public Fatigue get_fatigue()
+   {
+        return obst_end;
+   }
 
   public bool CheckApproachAngle(Vector3 position, Vector3 playerForward)
   {
