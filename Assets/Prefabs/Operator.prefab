@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6f7d0c81e51d54da51eb31aa0d23a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellWidth: 9
+  cellWidth: 3
   cellLength: 10.5
   ditanceFromPlayer: 6
   opCamera: {fileID: 0}
@@ -698,25 +698,29 @@ MonoBehaviour:
   - {fileID: 11400228, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
   - {fileID: 11491172, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
   - {fileID: 11428398, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
+  - {fileID: 11432186, guid: b19e075b59a7e6e45b8395e09d04e928, type: 2}
   coolDownDurations:
   - 1
   - 4
   - 3
   - 2
   - 1
+  - 10
   coolDownCounters:
   - 0
   - 0
   - 0
   - 0
   - 0
+  - 0
   cardMasks:
-  - {fileID: 11466908}
-  - {fileID: 11481148}
-  - {fileID: 11450756}
-  - {fileID: 11446154}
-  - {fileID: 11435652}
-  allowMove: 0000000000
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allowMove: 000000000000
   currentKey: 0
   obstacleBounds: {x: 0, y: 0, z: 0}
   cols: []

@@ -47,14 +47,29 @@ public class OperatorManager : MonoBehaviour {
 		{
 			if(selectedObstacle != null && placingObstacle)
 			{
-				if(!collidingWithOtherObjects() && Vector3.Distance(placingPoint,Player.position) > ditanceFromPlayer )
-				{
-					placeObstacle();
-				}
-				else
-				{
-					resetObstacle();
-				}
+                if (currentKey == 6)
+                {
+                    if (Vector3.Distance(placingPoint, Player.position) > ditanceFromPlayer)
+                    {
+                        placeObstacle();
+                    }
+                    else
+                    {
+                        resetObstacle();
+                    }
+                }
+                else
+                {
+                    if (!collidingWithOtherObjects() && Vector3.Distance(placingPoint, Player.position) > ditanceFromPlayer)
+                    {
+                        placeObstacle();
+                    }
+                    else
+                    {
+                        resetObstacle();
+                    }
+                }
+				
 			}
 		}
 
@@ -88,14 +103,15 @@ public class OperatorManager : MonoBehaviour {
             Input.GetKeyDown(KeyCode.Alpha2) ||
             Input.GetKeyDown(KeyCode.Alpha3) ||
             Input.GetKeyDown(KeyCode.Alpha4) ||
-            Input.GetKeyDown(KeyCode.Alpha5) )
+            Input.GetKeyDown(KeyCode.Alpha5) ||
+            Input.GetKeyDown(KeyCode.Alpha6))
         {
             string keyPreseed = Input.inputString;
             int keyNum = System.Convert.ToInt32(keyPreseed);
 
 
             // KEYNUM NO OF CARDS IN HAND
-            if (keyNum >= 1 && keyNum <= 5)
+            if (keyNum >= 1 && keyNum <= 6)
             {
                 if (allowMove[keyNum - 1])
                 {
@@ -105,7 +121,7 @@ public class OperatorManager : MonoBehaviour {
                         Destroy(selectedObstacle.gameObject);
                     }
 
-                    selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as Obstacles;
+                    selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, OperatorHand[keyNum - 1].transform.localRotation) as Obstacles;
                     foreach(Transform t in selectedObstacle.GetComponentsInChildren<Transform>())
                     {
                         t.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
