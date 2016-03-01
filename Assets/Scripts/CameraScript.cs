@@ -19,7 +19,8 @@ public class CameraScript : MonoBehaviour {
 
     void Awake()
     {
-    	Player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(Player == null)
+            Player = GameObject.FindGameObjectWithTag("Player").transform;
 		Clipper = GameObject.FindGameObjectWithTag("Clipper").transform;
         mapWidth = 20;
 		Clipper.transform.position -= (Vector3.forward * mapWidth/2 + Vector3.forward);
