@@ -40,6 +40,20 @@ public class RunnerController : MonoBehaviour
         characterRigidbody = GetComponent<Rigidbody>();
         fatigue_pool_start = fatigue_pool;
 
+
+        SkinnedMeshRenderer skin = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63").GetComponent<SkinnedMeshRenderer>();
+        Debug.Log(skin);
+
+        //skin.materials[1] = Material.;
+
+        //foreach(Transform child in t)
+        //{
+        //   Debug.Log(child.name);
+        //}
+        
+        //MeshRenderer MeshRend = transform.FindChild("polySurface63").GetComponent<MeshRenderer>();
+        //Debug.Log(MeshRend);
+
     }
 
     // Update is called once per frame
@@ -144,7 +158,7 @@ public class RunnerController : MonoBehaviour
         fatigue_pool.core -= temp_fatigue.core;
         fatigue_pool.legs -= temp_fatigue.legs;
 
-        
+
         if (fatigue_pool.arms <= 20 / 100 * fatigue_pool_start.arms)
         {
             SetBodyColor("arms","red");
@@ -186,6 +200,8 @@ public class RunnerController : MonoBehaviour
                     switch (i_color)
                     {
                         case "yellow":
+                            MeshRenderer MeshRend =  transform.FindChild("polySurface63").GetComponent<MeshRenderer>();
+                            Debug.Log(MeshRend);
                             break;
 
                         case "red":
