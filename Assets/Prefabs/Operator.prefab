@@ -1011,11 +1011,11 @@ MonoBehaviour:
   selectedObstacle: {fileID: 0}
   placingPoint: {x: 0, y: 0, z: 0}
   OperatorHand:
-  - {fileID: 11439770, guid: 8a1e1beb6b238224591bb1325a2142aa, type: 2}
-  - {fileID: 11448716, guid: a298e266688af71409eb68778b4ac407, type: 2}
-  - {fileID: 11400228, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
-  - {fileID: 11491172, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
-  - {fileID: 11428398, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
+  - {fileID: 11410504, guid: 83dba4dff1ea16142a9fc5af78980e3a, type: 2}
+  - {fileID: 11401184, guid: 017fe31a8c3fc3947beb0d1f4b3c121f, type: 2}
+  - {fileID: 11468768, guid: 5d7670f311e59b44691fb8ae36c29fd3, type: 2}
+  - {fileID: 11475256, guid: d96b54b2e635b9b4898b955fc8bb1b1e, type: 2}
+  - {fileID: 11412152, guid: a67b6585c22e51242a9f49db98dc8961, type: 2}
   - {fileID: 11432186, guid: b19e075b59a7e6e45b8395e09d04e928, type: 2}
   coolDownDurations:
   - 1
