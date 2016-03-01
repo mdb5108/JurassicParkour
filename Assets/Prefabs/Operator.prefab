@@ -337,8 +337,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162596}
-  m_LocalRotation: {x: 0.28398082, y: 0, z: 0, w: 0.95883}
-  m_LocalPosition: {x: 0, y: 28.9, z: -37}
+  m_LocalRotation: {x: 0.21263112, y: -0.6743798, z: 0.21263115, w: 0.6743797}
+  m_LocalPosition: {x: 40, y: 30, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 423602}
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &11404596
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &11417960
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &11417966
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellWidth: 3
-  cellLength: 10.5
+  cellLength: 1
   ditanceFromPlayer: 6
   opCamera: {fileID: 0}
   placingObstacle: 0
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0
+  - 5
   cardMasks:
   - {fileID: 11401690}
   - {fileID: 11417960}
@@ -1054,8 +1054,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  Clipper: {fileID: 0}
   mapWidth: 0
+  zDistance: 20
   distance: 50
   height: 2
   positionDamping: 20
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &11485312
@@ -1165,7 +1165,7 @@ MonoBehaviour:
   audioClipNames:
   - ObstacleLand
   audioClips:
-  - {fileID: 8300000, guid: 4bc8cc5f351e3684e9bb2d9a78b8ee3d, type: 3}
+  - {fileID: 0}
 --- !u!114 &11486122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!114 &11492044
@@ -1650,9 +1650,9 @@ RectTransform:
   - {fileID: 22481906}
   m_Father: {fileID: 22451546}
   m_RootOrder: 5
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 974.76, y: 38.4999}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -40, y: 38.4999}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22481906
