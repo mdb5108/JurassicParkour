@@ -122,8 +122,10 @@ public class OperatorManager : MonoBehaviour {
                     }
 
                     selectedObstacle = GameObject.Instantiate(OperatorHand[keyNum - 1], Vector3.one, Quaternion.identity) as Obstacles;
-                    selectedObstacle.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
-
+                    foreach(Transform t in selectedObstacle.GetComponentsInChildren<Transform>())
+                    {
+                        t.gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
+                    }
                     foreach (Collider col in selectedObstacle.GetComponentsInChildren<Collider>())
                     {
                         col.enabled = false;
@@ -193,7 +195,7 @@ public class OperatorManager : MonoBehaviour {
 	{
 		selectedObstacle.transform.position = placingPoint;
         TurnObstacleNormal(selectedObstacle.gameObject);
-		foreach(Transform t in selectedObstacle.transform)
+		foreach(Transform t in selectedObstacle.GetComponentsInChildren<Transform>())
 		{
             TurnObstacleNormal(t.gameObject);
 		}
@@ -292,11 +294,13 @@ public class OperatorManager : MonoBehaviour {
 	bool collidingWithOtherObjects()
 	{
         obstacleBounds = new Vector3(selectedObstacle.get_obst_len_wid().x, 5, selectedObstacle.get_obst_len_wid().y);
-        cols = Physics.OverlapBox(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds *.49f, Quaternion.identity);
+        int obstacleLayer = LayerMask.NameToLayer("Default");
+        int operatorCullLayer = LayerMask.NameToLayer("IgnoreOperator");
+        cols = Physics.OverlapBox(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds *.49f, Quaternion.identity, (1 << obstacleLayer) | (1 << operatorCullLayer));
 
         foreach (Collider col in cols)
         {
-            if (col.gameObject.tag != "Floor" && col.gameObject.tag != "InnerObstacle")
+            if(col.gameObject.tag != "Floor")
             {
                 return true;
             }
@@ -312,7 +316,6 @@ public class OperatorManager : MonoBehaviour {
     //        Gizmos.color = Color.blue;
     //        Gizmos.DrawCube(new Vector3(selectedObstacle.transform.position.x, 2.5f, selectedObstacle.transform.position.z), obstacleBounds);
     //    }
-       
     //}
 
 }
