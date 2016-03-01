@@ -24,12 +24,12 @@ public class HandOfCards : MonoBehaviour {
         Canvas canv = transform.GetComponent<Canvas>();
         Camera[] cams = new Camera[10];
         int cam_number = Camera.GetAllCameras(cams);
-        Debug.Log(cams);
+        //Debug.Log(cams);
         for (int i = 0; i < cam_number; i++)
         {
             if (cams[i].tag == "OperatorCamera")
             {
-                Debug.Log(cams[i].tag);
+                //Debug.Log(cams[i].tag);
                 canv.worldCamera = cams[i];
             }
         }
@@ -42,8 +42,8 @@ public class HandOfCards : MonoBehaviour {
                 card_count++;           
         }
 
-        Debug.Log("child count is");
-        Debug.Log(card_count);
+        //Debug.Log("child count is");
+        //Debug.Log(card_count);
 
         Transform first_child;
         first_child = transform.GetChild(0);        
