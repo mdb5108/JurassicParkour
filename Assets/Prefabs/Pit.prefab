@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9e42f74e9054a4eb413682b4dc1809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation_trigger: 
   allowed_actions: 0200000003000000
   angle_approach: 0
   angle_threshold: 45
@@ -309,6 +310,10 @@ MonoBehaviour:
     mirrored: 1
     lockOrientation: 0
     lockedOrientation: 0
+  obst_end:
+    core: 0
+    arms: 0
+    legs: 1
 --- !u!114 &11451332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -414,6 +419,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Size.z
       value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obst_end.legs
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

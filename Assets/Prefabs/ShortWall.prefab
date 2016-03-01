@@ -141,6 +141,10 @@ MonoBehaviour:
     mirrored: 1
     lockOrientation: 0
     lockedOrientation: 0
+  obst_end:
+    core: 0.5
+    arms: 0.5
+    legs: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -231,6 +235,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: animation_trigger
       value: Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obst_end.core
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obst_end.arms
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

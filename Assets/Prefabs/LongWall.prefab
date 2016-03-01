@@ -370,6 +370,10 @@ MonoBehaviour:
     mirrored: 0
     lockOrientation: 1
     lockedOrientation: 180
+  obst_end:
+    arms: 0
+    core: 0.5
+    legs: 0.5
 --- !u!114 &11446332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,6 +479,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: -0.00000016292068
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obst_end.core
+      value: -1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obst_end.legs
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
