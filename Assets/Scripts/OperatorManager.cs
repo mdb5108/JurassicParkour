@@ -257,6 +257,7 @@ public class OperatorManager : MonoBehaviour {
         }
 
         g.transform.position = destinationPoint;
+        GetComponent<SoundBank>().PlaySound("ObstacleLand");
        
     }
 

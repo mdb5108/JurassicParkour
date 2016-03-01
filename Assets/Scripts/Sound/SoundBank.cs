@@ -33,7 +33,6 @@ public class SoundBank : MonoBehaviour
 
     public void PlaySound(string key)
     {
-        Debug.Log("Hit");
         audioSource.PlayOneShot(clipDictionary[key]);
     }
 }
