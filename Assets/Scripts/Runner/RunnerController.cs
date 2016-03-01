@@ -26,6 +26,8 @@ public class RunnerController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        targetAnimator.GetBehaviour<StateSoundBehaviour>().soundBank = targetAnimator.GetComponent<SoundBank>();
+
         radiusOfInteraction = GetComponent<Collider>().bounds.extents.x;
         thirdCharacter = GetComponent<ThirdPersonCharacter>();
         userControl = GetComponent<ThirdPersonUserControl>();
