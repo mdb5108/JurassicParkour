@@ -27,7 +27,13 @@ public class OperatorManager : MonoBehaviour {
 
 		Player = GameObject.FindGameObjectWithTag("Player").transform;
 		opCamera = GameObject.FindGameObjectWithTag("OperatorCamera").GetComponent<Camera>();
-	
+
+        for (int i = 0; i < allowMove.Length - 1; i++)
+        {
+            allowMove[i] = true;
+            coolDownCounters[i] = coolDownDurations[i];
+        }
+
 	}
 	
 	// Update is called once per frame
@@ -47,9 +53,9 @@ public class OperatorManager : MonoBehaviour {
 		{
 			if(selectedObstacle != null && placingObstacle)
 			{
-                if (currentKey == 6)
+                if (selectedObstacle.tag == "ImpossibleWall")
                 {
-                    if (Vector3.Distance(placingPoint, Player.position) > ditanceFromPlayer)
+                    if (Vector3.Distance(placingPoint, Player.position) > selectedObstacle.get_obst_len_wid().y / 2)
                     {
                         placeObstacle();
                     }
@@ -169,22 +175,42 @@ public class OperatorManager : MonoBehaviour {
 
 				selectedObstacle.transform.position = placingPoint;
 
-				if(Vector3.Distance(placingPoint,Player.position) > ditanceFromPlayer && !collidingWithOtherObjects())
-				{
-					foreach(MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
-					{
-						t.material.color = Color.green;
-					}
-				}
-				else
-				{
-					foreach(MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
-					{
-						t.material.color = Color.red;
-					}
-				}
 
-
+                if (selectedObstacle.tag == "ImpossibleWall")
+                {
+                    if (Vector3.Distance(placingPoint, Player.position) > selectedObstacle.get_obst_len_wid().y/2)
+                    {
+                        foreach (MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
+                        {
+                            t.material.color = Color.green;
+                        }
+                    }
+                    else
+                    {
+                        foreach (MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
+                        {
+                            t.material.color = Color.red;
+                        }
+                    }
+                }
+                else
+                {
+                    if (Vector3.Distance(placingPoint, Player.position) > ditanceFromPlayer && !collidingWithOtherObjects())
+                    {
+                        foreach (MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
+                        {
+                            t.material.color = Color.green;
+                        }
+                    }
+                    else
+                    {
+                        foreach (MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
+                        {
+                            t.material.color = Color.red;
+                        }
+                    }
+                }
+                
 			}
 		}
 	}
@@ -241,10 +267,34 @@ public class OperatorManager : MonoBehaviour {
     void TurnObstacleNormal(GameObject go)
     {
         go.layer = LayerMask.NameToLayer("Default");
+
+        if (go.tag.Contains("ImpossibleWall"))
+        {
+            if (go.tag == "ImpossibleWallPL")
+            {
+                go.layer = LayerMask.NameToLayer("IgnoreOperator");
+            }
+            else if (go.tag == "ImpossibleWallOP")
+            {
+                go.layer = LayerMask.NameToLayer("IgnorePlayer");
+            }
+        }
+               
         MeshRenderer m = go.GetComponent<MeshRenderer>();
 
         if (m != null)
-            m.material.color = Color.white;
+        {                            
+            if (m.tag == "ImpossibleWallOP")
+            {
+                m.material.color = new Color(0, 0, 0, .5f);
+            }
+            else
+            {
+                m.material.color = Color.white;
+            }
+             
+        }
+        
     }
 
     IEnumerator applyFallingAnimation(GameObject g, Vector3 destinationPoint)
@@ -278,6 +328,7 @@ public class OperatorManager : MonoBehaviour {
     void resetObstacle()
 	{
 		selectedObstacle.transform.position = 200 * Vector3.up;
+        Destroy(selectedObstacle.gameObject);
 		placingObstacle = false;
 		placingPoint = Vector3.zero;
 		foreach(MeshRenderer t in selectedObstacle.GetComponentsInChildren<MeshRenderer>())
@@ -300,7 +351,7 @@ public class OperatorManager : MonoBehaviour {
 
         foreach (Collider col in cols)
         {
-            if(col.gameObject.tag != "Floor")
+            if (col.gameObject.tag != "Floor" && !col.gameObject.tag.Contains("ImpossibleWall"))
             {
                 return true;
             }
