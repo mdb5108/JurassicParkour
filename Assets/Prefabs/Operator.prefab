@@ -181,13 +181,16 @@ MonoBehaviour:
   - {fileID: 11400228, guid: 899d283f779e7a14fb36c3f7017c7d0d, type: 2}
   - {fileID: 11491172, guid: 00636f1e9e1276a4ba84990fd7dc720b, type: 2}
   - {fileID: 11428398, guid: 62181856aebd95a4aadabfdd466b2559, type: 2}
+  - {fileID: 11432186, guid: b19e075b59a7e6e45b8395e09d04e928, type: 2}
   coolDownDurations:
   - 5
   - 4
   - 3
   - 2
   - 1
+  - 10
   coolDownCounters:
+  - 0
   - 0
   - 0
   - 0
@@ -199,7 +202,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  allowMove: 0000000000
+  - {fileID: 0}
+  allowMove: 000000000000
   currentKey: 0
   obstacleBounds: {x: 0, y: 0, z: 0}
   cols: []
