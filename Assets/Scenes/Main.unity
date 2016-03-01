@@ -20283,6 +20283,10 @@ Prefab:
       propertyPath: m_Depth
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 22319876, guid: 958ac83825c459f409c63c1f2c83daeb, type: 2}
+      propertyPath: m_PlaneDistance
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 958ac83825c459f409c63c1f2c83daeb, type: 2}
   m_IsPrefabParent: 0
@@ -70208,7 +70212,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22462650, guid: 1b647cae04397f942a34b616860e0184, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22462650, guid: 1b647cae04397f942a34b616860e0184, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -116445,6 +116449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1fe2e87d891a44aa468901d849df34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  moveAhead: 0
 --- !u!23 &1729566333
 MeshRenderer:
   m_ObjectHideFlags: 0

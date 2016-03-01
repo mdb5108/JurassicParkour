@@ -408,7 +408,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 20
-  m_Depth: -1
+  m_Depth: -2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967039
@@ -1549,7 +1549,7 @@ Canvas:
   serializedVersion: 2
   m_RenderMode: 1
   m_Camera: {fileID: 2071468}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 0
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
