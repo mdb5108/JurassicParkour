@@ -34986,9 +34986,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.93333334
-    functionName: AnimationFinished
-    data: 
+  - time: 0
+    functionName: PlaySound
+    data: Jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -34996,6 +34996,13 @@ AnimationClip:
   - time: 0.93333334
     functionName: PlaySound
     data: Land
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.93333334
+    functionName: AnimationFinished
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
