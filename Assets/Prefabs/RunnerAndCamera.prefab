@@ -3040,8 +3040,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClipNames:
   - Land
+  - Roll
   audioClips:
   - {fileID: 8300000, guid: 172ca628ccaad3b478b12d990e5cff15, type: 3}
+  - {fileID: 8300000, guid: 2bbf83318867a53488568ae33a1b66e9, type: 3}
 --- !u!114 &11477624
 MonoBehaviour:
   m_ObjectHideFlags: 1
