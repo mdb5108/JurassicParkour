@@ -325,6 +325,31 @@ ModelImporter:
     100634: transform81
     100636: transform9
     100638: transform9 1
+    100640: polySurface50
+    100642: polySurface51
+    100644: polySurface52
+    100646: polySurface53
+    100648: polySurface54
+    100650: polySurface54 1
+    100652: polySurface55
+    100654: polySurface56
+    100656: polySurface57
+    100658: polySurface58
+    100660: polySurface59
+    100662: polySurface60
+    100664: polySurface61
+    100666: transform82
+    100668: transform83
+    100670: transform84
+    100672: transform85
+    100674: transform86
+    100676: transform87
+    100678: transform88
+    100680: transform89
+    100682: transform90
+    100684: transform91
+    100686: transform92
+    100688: transform93
     400000: //RootNode
     400002: group
     400004: group1
@@ -645,9 +670,36 @@ ModelImporter:
     400634: transform81
     400636: transform9
     400638: transform9 1
+    400640: polySurface50
+    400642: polySurface51
+    400644: polySurface52
+    400646: polySurface53
+    400648: polySurface54
+    400650: polySurface54 1
+    400652: polySurface55
+    400654: polySurface56
+    400656: polySurface57
+    400658: polySurface58
+    400660: polySurface59
+    400662: polySurface60
+    400664: polySurface61
+    400666: transform82
+    400668: transform83
+    400670: transform84
+    400672: transform85
+    400674: transform86
+    400676: transform87
+    400678: transform88
+    400680: transform89
+    400682: transform90
+    400684: transform91
+    400686: transform92
+    400688: transform93
     4300000: polySurface49
+    4300002: polySurface61
     9500000: //RootNode
     13700000: polySurface49
+    13700002: polySurface61
   materials:
     importMaterials: 1
     materialName: 0

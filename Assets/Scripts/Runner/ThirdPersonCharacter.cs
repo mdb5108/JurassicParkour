@@ -4,7 +4,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 {
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
-	[RequireComponent(typeof(Animator))]
 	public class ThirdPersonCharacter : MonoBehaviour
 	{
 		[SerializeField] float m_MovingTurnSpeed = 360;
@@ -17,7 +16,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_GroundCheckDistance = 0.1f;
 
 		Rigidbody m_Rigidbody;
-		Animator m_Animator;
+		public Animator m_Animator;
 		bool m_IsGrounded;
 		float m_OrigGroundCheckDistance;
 		const float k_Half = 0.5f;
@@ -36,7 +35,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		void Start()
 		{
-			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
 			m_Capsule = GetComponent<CapsuleCollider>();
 			m_CapsuleHeight = m_Capsule.height;
@@ -76,7 +74,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // TODO:
 			// send input and other state parameters to the animator
-			//UpdateAnimator(move);
+			UpdateAnimator(move);
             //Until we have animations:
             Vector3 v = (m_ForwardAmount*transform.forward * m_MoveSpeedMultiplier) * Time.deltaTime;
             // we preserve the existing y part of the current velocity.
@@ -180,7 +178,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				// jump!
 				m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_JumpPower, m_Rigidbody.velocity.z);
 				m_IsGrounded = false;
-				m_Animator.applyRootMotion = false;
 				m_GroundCheckDistance = 0.1f;
 			}
 		}
@@ -221,7 +218,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
-				m_Animator.applyRootMotion = true;
 			}
 			else
 			{

@@ -33,6 +33,8 @@ public class Obstacles : MonoBehaviour {
 
 
     [SerializeField]
+    private string animation_trigger;
+    [SerializeField]
     private actions[] allowed_actions;
     [SerializeField]
     private float angle_approach;
@@ -55,13 +57,25 @@ public class Obstacles : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+#if UNITY_EDITOR
+      DrawAxisOfInteraction();
+#endif
 	}
+
+  void DrawAxisOfInteraction()
+  {
+      var player = GameObject.FindWithTag("Player");
+      Vector3 axisOffset = get_start_axis_offset(player.transform.position);
+      Vector3 lineOfAxis = Vector3.Cross(axisOffset, Vector3.up).normalized;
+      Vector3 pointOnAxis = get_start_axis_point_on_line(player.transform.position);
+      float lineLength = 10;
+      Debug.DrawLine(pointOnAxis-(lineLength/2)*lineOfAxis, pointOnAxis + lineLength*lineOfAxis, Color.red);
+  }
 
   public bool CheckApproachAngle(Vector3 position, Vector3 playerForward)
   {
       Vector3 direction = position - transform.position;
-      Vector3 approachDir = transform.TransformDirection(get_angle_approach());
+      Vector3 approachDir = get_angle_approach();
 
       if(Vector3.Dot(direction, transform.forward) > 0)
       {
@@ -70,8 +84,12 @@ public class Obstacles : MonoBehaviour {
       }
 
       float angle = Vector3.Angle(playerForward, approachDir);
-
       return angle <= get_angle_threshold();
+  }
+
+  public string get_animation_trigger()
+  {
+    return animation_trigger;
   }
 
     public actions[] get_allowed_actions()
@@ -81,7 +99,7 @@ public class Obstacles : MonoBehaviour {
 
     public Vector3 get_angle_approach()
     {
-        return Quaternion.AngleAxis(angle_approach, Vector3.up)*Vector3.forward;
+        return transform.TransformDirection(Quaternion.AngleAxis(angle_approach, Vector3.up)*Vector3.forward);
     }
 
     public float get_angle_threshold()
@@ -112,7 +130,7 @@ public class Obstacles : MonoBehaviour {
 
     public Vector3 get_start_axis_point_on_line(Vector3 position)
     {
-        return get_start_axis_offset(position) + transform.position + start_axis.origin;
+        return get_start_axis_offset(position) + transform.TransformPoint(start_axis.origin);
     }
 
     public bool get_to_lock_orientation()
