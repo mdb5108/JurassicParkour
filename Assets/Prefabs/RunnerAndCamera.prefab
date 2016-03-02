@@ -3020,7 +3020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovingTurnSpeed: 720
   m_StationaryTurnSpeed: 180
-  m_JumpPower: 3
+  m_JumpPower: 0
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.25
   m_MoveSpeedMultiplier: 500
@@ -3075,6 +3075,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAnimator: {fileID: 9560338}
   animationRoot: {fileID: 414346}
+  fatigue_pool:
+    arms: 0
+    core: 0
+    legs: 0
 --- !u!124 &12479024
 Behaviour:
   m_ObjectHideFlags: 1
@@ -3197,6 +3201,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_JumpPower
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
