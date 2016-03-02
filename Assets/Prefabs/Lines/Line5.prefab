@@ -528,7 +528,7 @@ MonoBehaviour:
     axisNormal: 0
     distanceFromCenter: 0
     mirrored: 0
-    lockOrientation: 0
+    lockOrientation: 1
     lockedOrientation: 0
   obst_end:
     arms: 0
@@ -557,8 +557,8 @@ MonoBehaviour:
     axisNormal: 0
     distanceFromCenter: 2
     mirrored: 1
-    lockOrientation: 0
-    lockedOrientation: 0
+    lockOrientation: 1
+    lockedOrientation: 180
   obst_end:
     arms: 0.5
     core: 0.5
@@ -597,8 +597,8 @@ MonoBehaviour:
     axisNormal: 0
     distanceFromCenter: 1
     mirrored: 1
-    lockOrientation: 0
-    lockedOrientation: 0
+    lockOrientation: 1
+    lockedOrientation: 180
   obst_end:
     arms: 0
     core: 1
@@ -647,6 +647,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Size.x
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.lockOrientation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.lockedOrientation
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
