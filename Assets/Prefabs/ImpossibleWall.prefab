@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 498922}
-  - 114: {fileID: 11432186}
+  - 114: {fileID: 11437070}
   m_Layer: 0
   m_Name: ImpossibleWall
   m_TagString: ImpossibleWall
@@ -44,6 +44,7 @@ GameObject:
   - 33: {fileID: 3362280}
   - 65: {fileID: 6572798}
   - 23: {fileID: 2351868}
+  - 114: {fileID: 11421958}
   m_Layer: 0
   m_Name: CubePlayer
   m_TagString: ImpossibleWallPL
@@ -167,7 +168,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11432186
+--- !u!114 &11421958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9e42f74e9054a4eb413682b4dc1809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animation_trigger: 
+  allowed_actions: 
+  angle_approach: 0
+  angle_threshold: 0
+  possible_interaction: 0
+  obst_len_wid: {x: 3, y: 40}
+  start_axis:
+    origin: {x: 0, y: 0, z: 0}
+    axisNormal: 0
+    distanceFromCenter: 0
+    mirrored: 0
+    lockOrientation: 0
+    lockedOrientation: 0
+  obst_end:
+    arms: 0
+    core: 0
+    legs: 0
+  blocked: 1
+--- !u!114 &11437070
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -195,6 +225,7 @@ MonoBehaviour:
     arms: 0
     core: 0
     legs: 0
+  blocked: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -213,6 +244,38 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: obst_len_wid.y
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

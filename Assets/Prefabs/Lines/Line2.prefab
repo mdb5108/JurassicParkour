@@ -480,7 +480,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 3}
+  m_Size: {x: 2.9, y: 1, z: 3}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!65 &6554992
 BoxCollider:
@@ -504,7 +504,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 4, z: 1}
+  m_Size: {x: 2.9, y: 4, z: 1}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!65 &6568176
 BoxCollider:
@@ -540,7 +540,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 5}
+  m_Size: {x: 0.9, y: 3, z: 5}
   m_Center: {x: 2, y: 1.5, z: 0}
 --- !u!65 &6593220
 BoxCollider:
@@ -582,6 +582,7 @@ MonoBehaviour:
     arms: 0
     core: 0
     legs: 0
+  blocked: 0
 --- !u!114 &11415184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -621,6 +622,7 @@ MonoBehaviour:
     arms: 0
     core: 0
     legs: 1
+  blocked: 0
 --- !u!114 &11427454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -649,6 +651,7 @@ MonoBehaviour:
     arms: 0
     core: 0.5
     legs: 0.5
+  blocked: 0
 --- !u!114 &11453868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -677,6 +680,7 @@ MonoBehaviour:
     arms: 0
     core: 1
     legs: 0
+  blocked: 0
 --- !u!114 &11454766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -698,6 +702,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -1109,7 +1109,7 @@ MonoBehaviour:
   - {fileID: 11468768, guid: 5d7670f311e59b44691fb8ae36c29fd3, type: 2}
   - {fileID: 11475256, guid: d96b54b2e635b9b4898b955fc8bb1b1e, type: 2}
   - {fileID: 11412152, guid: a67b6585c22e51242a9f49db98dc8961, type: 2}
-  - {fileID: 11432186, guid: b19e075b59a7e6e45b8395e09d04e928, type: 2}
+  - {fileID: 11437070, guid: b19e075b59a7e6e45b8395e09d04e928, type: 2}
   coolDownDurations:
   - 1
   - 4
@@ -1805,6 +1805,11 @@ Prefab:
       propertyPath: zDistance
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: OperatorHand.Array.data[5]
+      value: 
+      objectReference: {fileID: 11437070, guid: b19e075b59a7e6e45b8395e09d04e928,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 138260}
