@@ -84,10 +84,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 179326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13056db5e4fdaf148826074d1f5799de, type: 3}
+  m_Script: {fileID: 11500000, guid: 334054e41c2513c4086a21c5e92d1f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   moveAhead: 1
 --- !u!1001 &100100000
 Prefab:
@@ -98,7 +98,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: speed
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: moveAhead
