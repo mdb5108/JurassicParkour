@@ -5,8 +5,8 @@ public class CameraScript : MonoBehaviour {
 
 
 	public Transform Player;    // The target we are following
-	public Transform Clipper; // Empty GO
 	public float mapWidth;
+    public float zDistance;
     public float distance;      // The distance from the target along its Z axis
     public float height;        // the height we want the camera to be above the target
     public float positionDamping;   // how quickly we should get to the target position
@@ -19,26 +19,24 @@ public class CameraScript : MonoBehaviour {
 
     void Awake()
     {
-    	Player = GameObject.FindGameObjectWithTag("Player").transform;
-		Clipper = GameObject.FindGameObjectWithTag("Clipper").transform;
+        if(Player == null)
+            Player = GameObject.FindGameObjectWithTag("Player").transform;
         mapWidth = 20;
-		Clipper.transform.position -= (Vector3.forward * mapWidth/2 + Vector3.forward);
 		walls = GameObject.FindGameObjectsWithTag("Wall");
 		transform.LookAt(Player.position);
-//		initalDirection = (Player.position - this.transform.position).normalized;
     }
     // LateUpdate is called once per frame
     void LateUpdate ()
 	{
 		checkForWalls();
 
-        if (Input.GetMouseButton(1))
-        {
-            transform.RotateAround(Player.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
-            Clipper.transform.RotateAround(Player.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
-        }
+        //ROTATING DISABLED
+        //if (Input.GetMouseButton(1))
+        //{
+        //    transform.RotateAround(Player.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
+        //}
         
-        Vector3 targetPosition = Player.position - (transform.forward * distance) + (transform.up * height);
+        Vector3 targetPosition = Player.position - (transform.forward * distance) + (transform.up * height) + (Vector3.forward * zDistance);
         transform.position = Vector3.Lerp(transform.position, targetPosition, positionDamping * Time.deltaTime);
 
 
@@ -48,11 +46,11 @@ public class CameraScript : MonoBehaviour {
 
 	void checkForWalls()
 	{
-		Debug.DrawRay(Clipper.transform.position, (Player.position - Clipper.transform.position).normalized * Vector3.Distance(Player.position, Clipper.transform.position), Color.red);
+		Debug.DrawRay(transform.position, (Player.position - transform.position).normalized * Vector3.Distance(Player.position, transform.position), Color.red);
 
 		RaycastHit hit;
 
-		if(Physics.Raycast(Clipper.transform.position, (Player.position - Clipper.transform.position).normalized, out hit, Vector3.Distance(Player.position, Clipper.transform.position)))
+		if(Physics.Raycast(transform.position, (Player.position - transform.position).normalized, out hit, Vector3.Distance(Player.position, transform.position)))
 		{
 
 		//----------------------- layer hiding

@@ -31,6 +31,8 @@ public class RunnerController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        targetAnimator.GetBehaviour<StateSoundBehaviour>().soundBank = targetAnimator.GetComponent<SoundBank>();
+
         radiusOfInteraction = GetComponent<Collider>().bounds.extents.x;
         thirdCharacter = GetComponent<ThirdPersonCharacter>();
         userControl = GetComponent<ThirdPersonUserControl>();
@@ -41,24 +43,30 @@ public class RunnerController : MonoBehaviour
         fatigue_pool_start = fatigue_pool;
 
 
+        Transform child = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63");
         SkinnedMeshRenderer skin = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63").GetComponent<SkinnedMeshRenderer>();
         Debug.Log(skin);
 
-        //skin.materials[1] = Material.;
+        //Material mat  = Resources.Load("Assets/Models/Character/Materials/greenarms", typeof(Material)) as Material; 
+        Material mat1 = Resources.Load<Material>("mainbody");
+        Material mat2 = Resources.Load<Material>("greencore");
+        Material mat3 = Resources.Load<Material>("redarms");
+        Material[] mats = { mat1, mat2, mat3 };
+        //Debug.Log(mat);
 
-        //foreach(Transform child in t)
-        //{
-        //   Debug.Log(child.name);
-        //}
-        
-        //MeshRenderer MeshRend = transform.FindChild("polySurface63").GetComponent<MeshRenderer>();
-        //Debug.Log(MeshRend);
+        // skin.sharedMaterials[1] = mat;
+
+        //skin.material = mat;
+        skin.sharedMaterials = mats;
+        //skin.sharedMaterial = mats[0];
+
 
     }
 
     // Update is called once per frame
     void Update ()
     {
+
     }
 
     public void HandleObstacleInteraction(bool jumpUp, bool jumpDown)

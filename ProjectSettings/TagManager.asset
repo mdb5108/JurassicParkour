@@ -12,6 +12,9 @@ TagManager:
   - InnerObstacle
   - Card
   - Model
+  - ImpossibleWallOP
+  - ImpossibleWallPL
+  - ImpossibleWall
   layers:
   - Default
   - TransparentFX
