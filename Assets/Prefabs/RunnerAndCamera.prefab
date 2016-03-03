@@ -1930,7 +1930,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180044}
   m_LocalRotation: {x: 0, y: 0.000000063325004, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -4}
+  m_LocalPosition: {x: -0, y: -1.37, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 496826}
@@ -2777,7 +2777,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.96300006, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 478428}
@@ -3188,9 +3188,12 @@ MonoBehaviour:
   targetAnimator: {fileID: 9560338}
   animationRoot: {fileID: 414346}
   fatigue_pool:
-    arms: 0
-    core: 0
-    legs: 0
+    arms: 2
+    core: 2
+    legs: 2
+  green_precentage: 0
+  yellow_precentage: 50
+  red_precentage: 30
 --- !u!124 &12479024
 Behaviour:
   m_ObjectHideFlags: 1
@@ -3222,9 +3225,9 @@ SkinnedMeshRenderer:
   m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: ad17e60f3f95f554db1e583171131708, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: ad17e60f3f95f554db1e583171131708, type: 2}
+  - {fileID: 2100000, guid: ad17e60f3f95f554db1e583171131708, type: 2}
+  - {fileID: 2100000, guid: ad17e60f3f95f554db1e583171131708, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

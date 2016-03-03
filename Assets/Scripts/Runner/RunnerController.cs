@@ -23,11 +23,19 @@ public class RunnerController : MonoBehaviour
     private bool movingToVault;
     private Vector3 moveToVaultPosition;
 
-    private Obstacles.Fatigue temp_fatigue;
+    private Obstacles.Fatigue obs_fatigue;
     [SerializeField]
     private Obstacles.Fatigue fatigue_pool;
     private Obstacles.Fatigue fatigue_pool_start;
 
+    private Material[] mats = new Material[10];
+    private SkinnedMeshRenderer skin;
+    [SerializeField]
+    private float green_precentage;
+    [SerializeField]
+    private float yellow_precentage;
+    [SerializeField]
+    private float red_precentage;
     // Use this for initialization
     void Start ()
     {
@@ -40,27 +48,20 @@ public class RunnerController : MonoBehaviour
         animationRootOriginRot = animationRoot.localRotation;
         characterCollider = GetComponent<Collider>();
         characterRigidbody = GetComponent<Rigidbody>();
+
+
         fatigue_pool_start = fatigue_pool;
-
-
-        Transform child = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63");
-        SkinnedMeshRenderer skin = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63").GetComponent<SkinnedMeshRenderer>();
-        Debug.Log(skin);
-
-        //Material mat  = Resources.Load("Assets/Models/Character/Materials/greenarms", typeof(Material)) as Material; 
-        Material mat1 = Resources.Load<Material>("mainbody");
-        Material mat2 = Resources.Load<Material>("greencore");
-        Material mat3 = Resources.Load<Material>("redarms");
-        Material[] mats = { mat1, mat2, mat3 };
-        //Debug.Log(mat);
-
-        // skin.sharedMaterials[1] = mat;
-
-        //skin.material = mat;
-        skin.sharedMaterials = mats;
-        //skin.sharedMaterial = mats[0];
-
-
+        mats[0] = Resources.Load<Material>("mainbody");
+        mats[1] = Resources.Load<Material>("greenarms");
+        mats[2] = Resources.Load<Material>("greencore");
+        mats[3] = Resources.Load<Material>("greenlegs");
+        mats[4] = Resources.Load<Material>("yellowarms");
+        mats[5] = Resources.Load<Material>("yellowcore");
+        mats[6] = Resources.Load<Material>("yellowlegs");
+        mats[7] = Resources.Load<Material>("redarms");
+        mats[8] = Resources.Load<Material>("redcore");
+        mats[9] = Resources.Load<Material>("redlegs");
+        skin = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63").GetComponent<SkinnedMeshRenderer>();
     }
 
     // Update is called once per frame
@@ -84,7 +85,20 @@ public class RunnerController : MonoBehaviour
                 else if(hits[i].collider.tag == "Obstacle")
                 {
                     Obstacles obstacle = hits[i].transform.GetComponent<Obstacles>();
-                    if(!obstacle.get_blocked())
+                    //start of code changes by Shreyas
+                    obs_fatigue = obstacle.get_fatigue();
+                    Material[] existing_skin = skin.sharedMaterials;
+                    //Debug.Log(existing_skin[1]);
+                    if (obs_fatigue.arms > 0 && existing_skin[1] == mats[7]
+                        || obs_fatigue.core > 0 && existing_skin[2] == mats[8]
+                        || obs_fatigue.legs > 0 && existing_skin[3] == mats[9])
+                    {
+                        Debug.Log("zzz");
+                        break;//don't start animation if body part red and obstacle is taxing
+                    }
+
+
+                    if (!obstacle.get_blocked())
                     {
                         var interactionType = obstacle.get_possible_interaction();
                         bool matching = ((interactionType == Obstacles.way_of_interaction.PASS_UP)   && jumpUp) ||
@@ -97,6 +111,9 @@ public class RunnerController : MonoBehaviour
                             Vector3 axisOfInteraction = obstacle.get_start_axis_offset(transform.position);
                             Vector3 pointOnAxis = obstacle.get_start_axis_point_on_line(transform.position);
                             Vector3 closestPointDelta = Vector3.Project(pointOnAxis - transform.position, axisOfInteraction.normalized);
+
+
+
 
                             //If the delta is pointing opposite the axis offset we can still
                             //run up
@@ -121,8 +138,9 @@ public class RunnerController : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
         }
-        movingToVault = false;
+        movingToVault = false;                                  
         StartAnimation(obs);
+        
     }
 
     private void FixedUpdate()
@@ -138,18 +156,20 @@ public class RunnerController : MonoBehaviour
 
     private void StartAnimation(Obstacles obs)
     {
-        if(obs.get_to_lock_orientation())
+
+        if (obs.get_to_lock_orientation())
         {
             transform.forward = obs.get_orientation_facing(transform.position);
         }
+
+
 
         string trigger = obs.get_animation_trigger();
         characterRigidbody.isKinematic = true;
         characterCollider.enabled = false;
         targetAnimator.SetTrigger(trigger);
         
-        //start of code changes by Shreyas
-        temp_fatigue =  obs.get_fatigue();
+
     }
 
     public void AnimationFinished()
@@ -169,36 +189,36 @@ public class RunnerController : MonoBehaviour
 
     public void ColorBody()
     {
-        fatigue_pool.arms -= temp_fatigue.arms;
-        fatigue_pool.core -= temp_fatigue.core;
-        fatigue_pool.legs -= temp_fatigue.legs;
+        fatigue_pool.arms -= obs_fatigue.arms;
+        fatigue_pool.core -= obs_fatigue.core;
+        fatigue_pool.legs -= obs_fatigue.legs;
 
 
-        if (fatigue_pool.arms <= 20 / 100 * fatigue_pool_start.arms)
+        if (fatigue_pool.arms <= red_precentage / 100 * fatigue_pool_start.arms)
         {
             SetBodyColor("arms","red");
         }
-        else if (fatigue_pool.arms <= 50 / 100 * fatigue_pool_start.arms)
+        else if (fatigue_pool.arms <= yellow_precentage / 100 * fatigue_pool_start.arms)
         {
             SetBodyColor("arms", "yellow");
         }
 
 
-        if (fatigue_pool.core <= 20 / 100 * fatigue_pool_start.core)
+        if (fatigue_pool.core <= red_precentage / 100 * fatigue_pool_start.core)
         {
             SetBodyColor("core", "red");
         }
-        else if(fatigue_pool.core <= 50 / 100 * fatigue_pool_start.core)
+        else if(fatigue_pool.core <= yellow_precentage / 100 * fatigue_pool_start.core)
         {
             SetBodyColor("core", "yellow");
         }
 
 
-        if (fatigue_pool.legs <= 20 / 100 * fatigue_pool_start.legs)
+        if (fatigue_pool.legs <= red_precentage / 100 * fatigue_pool_start.legs)
         {
             SetBodyColor("legs", "red");
         }
-        else if(fatigue_pool.legs <= 50 / 100 * fatigue_pool_start.legs)
+        else if(fatigue_pool.legs <= yellow_precentage / 100 * fatigue_pool_start.legs)
         {
             SetBodyColor("legs", "yellow");
         }
@@ -208,6 +228,10 @@ public class RunnerController : MonoBehaviour
 
     void SetBodyColor(string i_body_part,string i_color)
     {
+       
+        //Debug.Log(skin);
+        Material[] existing_skin = skin.sharedMaterials;
+        
         switch (i_body_part)
         {
             case "core":
@@ -215,14 +239,14 @@ public class RunnerController : MonoBehaviour
                     switch (i_color)
                     {
                         case "yellow":
-                            MeshRenderer MeshRend =  transform.FindChild("polySurface63").GetComponent<MeshRenderer>();
-                            Debug.Log(MeshRend);
+                            existing_skin[2] = mats[5];
                             break;
 
                         case "red":
+                            existing_skin[2] = mats[8];
                             break;
 
-                        default:
+                        default:                            
                             break;
                     }
                 }
@@ -233,9 +257,11 @@ public class RunnerController : MonoBehaviour
                     switch (i_color)
                     {
                         case "yellow":
+                            existing_skin[1] = mats[4];
                             break;
 
                         case "red":
+                            existing_skin[1] = mats[7];
                             break;
 
                         default:
@@ -248,10 +274,12 @@ public class RunnerController : MonoBehaviour
                 {
                     switch (i_color)
                     {
-                        case "yellow":
+                        case "yellow":                            
+                            existing_skin[3] = mats[6];
                             break;
 
                         case "red":
+                            existing_skin[3] = mats[9];
                             break;
 
                         default:
@@ -263,6 +291,10 @@ public class RunnerController : MonoBehaviour
             default:
                 break;
         }
+
+        //replace back to original skin
+        skin.sharedMaterials = existing_skin;
+
 
     }
 
