@@ -3188,12 +3188,12 @@ MonoBehaviour:
   targetAnimator: {fileID: 9560338}
   animationRoot: {fileID: 414346}
   fatigue_pool:
-    arms: 2
-    core: 2
-    legs: 2
-  yellow_precentage: 50
-  red_precentage: 30
-  rejuvination_time: 30
+    arms: 4
+    core: 4
+    legs: 4
+  yellow_precentage: 70
+  red_precentage: 40
+  rejuvination_time: 0.1
   flash_time: 2
 --- !u!124 &12479024
 Behaviour:
@@ -3325,6 +3325,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_JumpPower
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rejuvination_time
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fatigue_pool.arms
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fatigue_pool.core
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fatigue_pool.legs
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

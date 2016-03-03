@@ -24,7 +24,6 @@ public class RunnerController : MonoBehaviour
     private bool movingToVault;
     private Vector3 moveToVaultPosition;
 
-    private Obstacles.Fatigue obs_fatigue;
     [SerializeField]
     private Obstacles.Fatigue fatigue_pool;
     private Obstacles.Fatigue fatigue_pool_start;
@@ -76,35 +75,17 @@ public class RunnerController : MonoBehaviour
     void Update ()
     {
         Material[] existing_skin = skin.sharedMaterials;
-        rejuvination_time -= Time.deltaTime;
-        if (rejuvination_time <= 0)
-        {
-            rejuvination_time = start_rejuvination_time;
-            flash_time = start_flash_time;
-            fatigue_pool = fatigue_pool_start;
-        }
+        fatigue_pool.arms += rejuvination_time * Time.deltaTime;
+        fatigue_pool.core += rejuvination_time * Time.deltaTime;
+        fatigue_pool.legs += rejuvination_time * Time.deltaTime;
 
-        if (flash_time >= 0)
-        {
-            flash_time -= Time.deltaTime;
 
-            if (flash_time > Math.Floor(flash_time) + 0.5)
-            {
-                existing_skin[1] = mats[1];
-                existing_skin[2] = mats[2];
-                existing_skin[3] = mats[3];
-            }
-            else
-            {
-                existing_skin[1] = mats[0];
-                existing_skin[2] = mats[0];
-                existing_skin[3] = mats[0];
-            }
-        }
+        fatigue_pool.arms = Mathf.Min(fatigue_pool_start.arms, fatigue_pool.arms);
+        fatigue_pool.core = Mathf.Min(fatigue_pool_start.core, fatigue_pool.core);
+        fatigue_pool.legs = Mathf.Min(fatigue_pool_start.legs, fatigue_pool.legs);
 
-        skin.sharedMaterials = existing_skin;
-        
 
+        ColorBody();
     }
 
     public void HandleObstacleInteraction(bool jumpUp, bool jumpDown)
@@ -123,13 +104,12 @@ public class RunnerController : MonoBehaviour
                 {
                     Obstacles obstacle = hits[i].transform.GetComponent<Obstacles>();
                     //start of code changes by Shreyas
-                    obs_fatigue = obstacle.get_fatigue();
+                    Obstacles.Fatigue obs_fatigue = obstacle.get_fatigue();
                     Material[] existing_skin = skin.sharedMaterials;                    
-                    if (obs_fatigue.arms > 0 && existing_skin[1] == mats[7]
+                    if (   obs_fatigue.arms > 0 && existing_skin[1] == mats[7]
                         || obs_fatigue.core > 0 && existing_skin[2] == mats[8]
                         || obs_fatigue.legs > 0 && existing_skin[3] == mats[9])
                     {
-                        //Debug.Log("zzz");
                         break;//don't start animation if body part red and obstacle is taxing
                     }
 
@@ -198,7 +178,11 @@ public class RunnerController : MonoBehaviour
             transform.forward = obs.get_orientation_facing(transform.position);
         }
 
-
+        Obstacles.Fatigue obs_fatigue = obs.get_fatigue();
+        fatigue_pool.arms -= obs_fatigue.arms;
+        fatigue_pool.core -= obs_fatigue.core;
+        fatigue_pool.legs -= obs_fatigue.legs;
+        ColorBody();
 
         string trigger = obs.get_animation_trigger();
         characterRigidbody.isKinematic = true;
@@ -217,67 +201,68 @@ public class RunnerController : MonoBehaviour
         characterRigidbody.isKinematic = false;
         characterCollider.enabled = true;
 
-        //start of code changes by Shreyas        
-        ColorBody();
-        
-
     }
 
     public void ColorBody()
     {
-        //reset body
-        if (fatigue_pool.arms == fatigue_pool_start.arms && fatigue_pool.legs == fatigue_pool_start.legs && fatigue_pool.core == fatigue_pool_start.core)
-        {
-            Material[] existing_skin = skin.sharedMaterials;
-            existing_skin[1] = mats[0];
-            existing_skin[2] = mats[0];
-            existing_skin[3] = mats[0];            
-            skin.sharedMaterials = existing_skin;
-        }
-
-
-        fatigue_pool.arms -= obs_fatigue.arms;
-        fatigue_pool.core -= obs_fatigue.core;
-        fatigue_pool.legs -= obs_fatigue.legs;
-
+        Material[] existing_skin = skin.sharedMaterials;
+         //reset body
+         if (fatigue_pool.arms >= fatigue_pool_start.arms && fatigue_pool.legs >= fatigue_pool_start.legs && fatigue_pool.core >= fatigue_pool_start.core)
+         {
+             existing_skin[1] = mats[0];
+             existing_skin[2] = mats[0];
+             existing_skin[3] = mats[0];            
+             skin.sharedMaterials = existing_skin;
+         }
 
         if (fatigue_pool.arms <= red_precentage / 100 * fatigue_pool_start.arms)
         {
-            SetBodyColor("arms","red");
+            SetBodyColor("arms","red",existing_skin);
         }
         else if (fatigue_pool.arms <= yellow_precentage / 100 * fatigue_pool_start.arms)
         {
-            SetBodyColor("arms", "yellow");
+            SetBodyColor("arms", "yellow",existing_skin);
+        }
+        else
+        {
+            existing_skin[1] = mats[0];
         }
 
 
         if (fatigue_pool.core <= red_precentage / 100 * fatigue_pool_start.core)
         {
-            SetBodyColor("core", "red");
+            SetBodyColor("core", "red",existing_skin);
         }
         else if(fatigue_pool.core <= yellow_precentage / 100 * fatigue_pool_start.core)
         {            
-            SetBodyColor("core", "yellow");
+            SetBodyColor("core", "yellow",existing_skin);
+        }
+        else
+        {
+            existing_skin[2] = mats[0];
         }
 
 
         if (fatigue_pool.legs <= red_precentage / 100 * fatigue_pool_start.legs)
         {
-            SetBodyColor("legs", "red");
+            SetBodyColor("legs", "red",existing_skin);
         }
         else if(fatigue_pool.legs <= yellow_precentage / 100 * fatigue_pool_start.legs)
         {
-            SetBodyColor("legs", "yellow");
+            SetBodyColor("legs", "yellow",existing_skin);
         }
-        
+        else
+        {
+            existing_skin[3] = mats[0];
+        }
+
+        skin.sharedMaterials = existing_skin;
 
     }   
 
-    void SetBodyColor(string i_body_part,string i_color)
+    void SetBodyColor(string i_body_part,string i_color, Material[] existing_skin)
     {
        
-        Material[] existing_skin = skin.sharedMaterials;
-        
         switch (i_body_part)
         {
             case "core":
@@ -337,10 +322,6 @@ public class RunnerController : MonoBehaviour
             default:
                 break;
         }
-
-        //replace back to original skin
-        skin.sharedMaterials = existing_skin;
-
 
     }
 

@@ -325,7 +325,7 @@ MonoBehaviour:
     lockedOrientation: 180
   obst_end:
     arms: 0.5
-    core: 0.5
+    core: 0
     legs: 0
   blocked: 0
 --- !u!1001 &100100000
@@ -421,7 +421,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: obst_end.core
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: obst_end.arms
