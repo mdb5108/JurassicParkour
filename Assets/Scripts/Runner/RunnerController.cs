@@ -42,11 +42,31 @@ public class RunnerController : MonoBehaviour
         characterRigidbody = GetComponent<Rigidbody>();
         fatigue_pool_start = fatigue_pool;
 
+
+        Transform child = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63");
+        SkinnedMeshRenderer skin = transform.FindChild("Mesh").transform.FindChild("anubis").transform.FindChild("polySurface63").GetComponent<SkinnedMeshRenderer>();
+        Debug.Log(skin);
+
+        //Material mat  = Resources.Load("Assets/Models/Character/Materials/greenarms", typeof(Material)) as Material; 
+        Material mat1 = Resources.Load<Material>("mainbody");
+        Material mat2 = Resources.Load<Material>("greencore");
+        Material mat3 = Resources.Load<Material>("redarms");
+        Material[] mats = { mat1, mat2, mat3 };
+        //Debug.Log(mat);
+
+        // skin.sharedMaterials[1] = mat;
+
+        //skin.material = mat;
+        skin.sharedMaterials = mats;
+        //skin.sharedMaterial = mats[0];
+
+
     }
 
     // Update is called once per frame
     void Update ()
     {
+
     }
 
     public void HandleObstacleInteraction(bool jumpUp, bool jumpDown)
@@ -153,7 +173,7 @@ public class RunnerController : MonoBehaviour
         fatigue_pool.core -= temp_fatigue.core;
         fatigue_pool.legs -= temp_fatigue.legs;
 
-        
+
         if (fatigue_pool.arms <= 20 / 100 * fatigue_pool_start.arms)
         {
             SetBodyColor("arms","red");
@@ -195,6 +215,8 @@ public class RunnerController : MonoBehaviour
                     switch (i_color)
                     {
                         case "yellow":
+                            MeshRenderer MeshRend =  transform.FindChild("polySurface63").GetComponent<MeshRenderer>();
+                            Debug.Log(MeshRend);
                             break;
 
                         case "red":

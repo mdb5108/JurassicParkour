@@ -28,8 +28,7 @@ public class HandOfCards : MonoBehaviour {
         for (int i = 0; i < cam_number; i++)
         {
             if (cams[i].tag == "OperatorCamera")
-            {
-                //Debug.Log(cams[i].tag);
+            {                
                 canv.worldCamera = cams[i];
             }
         }
@@ -41,9 +40,6 @@ public class HandOfCards : MonoBehaviour {
             if (child.tag == "Card")         
                 card_count++;           
         }
-
-        //Debug.Log("child count is");
-        //Debug.Log(card_count);
 
         Transform first_child;
         first_child = transform.GetChild(0);        
