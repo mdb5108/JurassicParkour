@@ -77,7 +77,11 @@ public class RunnerController : MonoBehaviour
             hits = Physics.SphereCastAll(transform.position, radiusOfInteraction, transform.forward, INTERACTION_LENGTH);
             for(int i = 0; i < hits.Length; i++)
             {
-                if(hits[i].collider.tag == "Obstacle")
+                if(hits[i].collider.tag == "ImpossibleWallPL")
+                {
+                    break; //If impassible wall was hit first, any likely obstacle is on the other side
+                }
+                else if(hits[i].collider.tag == "Obstacle")
                 {
                     Obstacles obstacle = hits[i].transform.GetComponent<Obstacles>();
                     var interactionType = obstacle.get_possible_interaction();

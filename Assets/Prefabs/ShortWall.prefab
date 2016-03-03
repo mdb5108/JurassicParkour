@@ -103,7 +103,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 1}
+  m_Size: {x: 2.9, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!65 &6535772
 BoxCollider:
@@ -142,8 +142,8 @@ MonoBehaviour:
     lockOrientation: 0
     lockedOrientation: 0
   obst_end:
-    core: 0.5
     arms: 0.5
+    core: 0.5
     legs: 0
 --- !u!1001 &100100000
 Prefab:
@@ -243,6 +243,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: obst_end.arms
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 2.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
