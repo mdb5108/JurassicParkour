@@ -114,7 +114,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161490}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -128,14 +128,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 119196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45710d498ddf5924da5ee84daea47fcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 334054e41c2513c4086a21c5e92d1f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createGridNow: 0
-  deleteGridNow: 0
-  gridWidth: 9
-  gridLength: 27
-  templateCube: {fileID: 161490}
+  speed: 0
+  moveAhead: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -151,6 +148,11 @@ Prefab:
       propertyPath: m_UseLightProbes
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 119196}
