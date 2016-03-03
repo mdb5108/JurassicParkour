@@ -79,30 +79,33 @@ public class RunnerController : MonoBehaviour
             {
                 if(hits[i].collider.tag == "ImpossibleWallPL")
                 {
-                    break; //If impassible wall was hit first, any likely obstacle is on the other side
+                    break; //If impassible wall was hit first, any likely obstacle after is on the other side
                 }
                 else if(hits[i].collider.tag == "Obstacle")
                 {
                     Obstacles obstacle = hits[i].transform.GetComponent<Obstacles>();
-                    var interactionType = obstacle.get_possible_interaction();
-                    bool matching = ((interactionType == Obstacles.way_of_interaction.PASS_UP)   && jumpUp) ||
-                                    ((interactionType == Obstacles.way_of_interaction.PASS_DOWN) && jumpDown);
-
-                    if(matching
-                        && obstacle.CheckApproachAngle(transform.position, transform.forward))
+                    if(!obstacle.get_blocked())
                     {
-                        //Find nearest point on axis
-                        Vector3 axisOfInteraction = obstacle.get_start_axis_offset(transform.position);
-                        Vector3 pointOnAxis = obstacle.get_start_axis_point_on_line(transform.position);
-                        Vector3 closestPointDelta = Vector3.Project(pointOnAxis - transform.position, axisOfInteraction.normalized);
+                        var interactionType = obstacle.get_possible_interaction();
+                        bool matching = ((interactionType == Obstacles.way_of_interaction.PASS_UP)   && jumpUp) ||
+                                        ((interactionType == Obstacles.way_of_interaction.PASS_DOWN) && jumpDown);
 
-                        //If the delta is pointing opposite the axis offset we can still
-                        //run up
-                        if(Vector3.Dot(closestPointDelta, axisOfInteraction) < 0)
+                        if(matching
+                            && obstacle.CheckApproachAngle(transform.position, transform.forward))
                         {
-                            userControl.EnableInput(false);
-                            StartCoroutine(MoveToVault(transform.position + closestPointDelta, axisOfInteraction, obstacle));
-                            break;
+                            //Find nearest point on axis
+                            Vector3 axisOfInteraction = obstacle.get_start_axis_offset(transform.position);
+                            Vector3 pointOnAxis = obstacle.get_start_axis_point_on_line(transform.position);
+                            Vector3 closestPointDelta = Vector3.Project(pointOnAxis - transform.position, axisOfInteraction.normalized);
+
+                            //If the delta is pointing opposite the axis offset we can still
+                            //run up
+                            if(Vector3.Dot(closestPointDelta, axisOfInteraction) < 0)
+                            {
+                                userControl.EnableInput(false);
+                                StartCoroutine(MoveToVault(transform.position + closestPointDelta, axisOfInteraction, obstacle));
+                                break;
+                            }
                         }
                     }
                 }

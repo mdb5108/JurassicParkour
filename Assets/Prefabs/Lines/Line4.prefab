@@ -504,7 +504,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3, z: 5}
+  m_Size: {x: 0.9, y: 3, z: 5}
   m_Center: {x: 2, y: 1.5, z: 0}
 --- !u!114 &11406420
 MonoBehaviour:
@@ -534,6 +534,7 @@ MonoBehaviour:
     arms: 0
     core: 0.5
     legs: 0.5
+  blocked: 0
 --- !u!114 &11449616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -556,12 +557,13 @@ MonoBehaviour:
     axisNormal: 0
     distanceFromCenter: 2
     mirrored: 1
-    lockOrientation: 0
-    lockedOrientation: 0
+    lockOrientation: 1
+    lockedOrientation: 180
   obst_end:
     arms: 0.5
     core: 0.5
     legs: 0
+  blocked: 0
 --- !u!114 &11475256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,12 +586,13 @@ MonoBehaviour:
     axisNormal: 0
     distanceFromCenter: 0
     mirrored: 0
-    lockOrientation: 0
+    lockOrientation: 1
     lockedOrientation: 0
   obst_end:
     arms: 0
     core: 0
     legs: 0
+  blocked: 0
 --- !u!114 &11480870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -612,12 +615,13 @@ MonoBehaviour:
     axisNormal: 0
     distanceFromCenter: 2
     mirrored: 1
-    lockOrientation: 0
-    lockedOrientation: 0
+    lockOrientation: 1
+    lockedOrientation: 180
   obst_end:
     arms: 0.5
     core: 0.5
     legs: 0
+  blocked: 0
 --- !u!114 &11486634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -642,7 +646,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Size.x
-      value: 2.9
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.lockOrientation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: start_axis.lockedOrientation
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

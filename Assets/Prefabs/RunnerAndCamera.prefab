@@ -3132,7 +3132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovingTurnSpeed: 720
   m_StationaryTurnSpeed: 180
-  m_JumpPower: 3
+  m_JumpPower: 0
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.25
   m_MoveSpeedMultiplier: 500
@@ -3316,6 +3316,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_JumpPower
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

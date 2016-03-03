@@ -58,13 +58,14 @@ public class Obstacles : MonoBehaviour {
     [SerializeField]
     private Fatigue obst_end;
 
+    [SerializeField]
+    private bool blocked;
+
 
     // Use this for initialization
     void Start()
     {
-
-
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -72,6 +73,32 @@ public class Obstacles : MonoBehaviour {
       DrawAxisOfInteraction();
 #endif
 	}
+
+  public void PlacedObstacle()
+  {
+      Obstacles[] obstacles = GetComponentsInChildren<Obstacles>();
+      for(int i = 1; i < obstacles.Length; i++)
+      {
+          obstacles[i].PlacedObstacle();
+      }
+
+      BoxCollider selfCol = GetComponent<BoxCollider>();
+      if(selfCol != null)
+      {
+          Bounds b = selfCol.bounds;
+          Collider[] cols = Physics.OverlapBox(b.center, b.extents, transform.rotation, Physics.AllLayers, QueryTriggerInteraction.Collide);
+
+          foreach(Collider col in cols)
+          {
+              Obstacles obs = col.gameObject.GetComponent<Obstacles>();
+              if(obs != null && selfCol != col)
+              {
+                  obs.block_obstacle();
+                  block_obstacle();
+              }
+          }
+      }
+  }
 
   void DrawAxisOfInteraction()
   {
@@ -164,5 +191,15 @@ public class Obstacles : MonoBehaviour {
             facing = -facing;
         }
         return facing;
+    }
+
+    public void block_obstacle()
+    {
+      blocked = true;
+    }
+
+    public bool get_blocked()
+    {
+      return blocked;
     }
 }

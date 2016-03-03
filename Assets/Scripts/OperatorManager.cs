@@ -307,6 +307,7 @@ public class OperatorManager : MonoBehaviour {
         }
 
         g.transform.position = destinationPoint;
+        g.GetComponent<Obstacles>().PlacedObstacle();
         GetComponent<SoundBank>().PlaySound("ObstacleLand");
        
     }
@@ -323,6 +324,7 @@ public class OperatorManager : MonoBehaviour {
 
         
         g.transform.localScale = Vector3.one;
+        g.GetComponent<Obstacles>().PlacedObstacle();
        
     }
 
