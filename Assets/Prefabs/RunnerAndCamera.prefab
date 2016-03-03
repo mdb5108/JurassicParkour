@@ -3191,9 +3191,10 @@ MonoBehaviour:
     arms: 2
     core: 2
     legs: 2
-  green_precentage: 0
   yellow_precentage: 50
   red_precentage: 30
+  rejuvination_time: 30
+  flash_time: 2
 --- !u!124 &12479024
 Behaviour:
   m_ObjectHideFlags: 1

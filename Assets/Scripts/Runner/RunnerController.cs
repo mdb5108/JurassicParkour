@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 using System.Collections;
+using System;
 
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Characters.ThirdPerson;
@@ -30,12 +31,18 @@ public class RunnerController : MonoBehaviour
 
     private Material[] mats = new Material[10];
     private SkinnedMeshRenderer skin;
-    [SerializeField]
-    private float green_precentage;
+    //[SerializeField]
+    //private float green_precentage;
     [SerializeField]
     private float yellow_precentage;
     [SerializeField]
     private float red_precentage;
+    [SerializeField]
+    private float rejuvination_time;
+    private float start_rejuvination_time;
+    [SerializeField]
+    private float flash_time;
+    private float start_flash_time;
     // Use this for initialization
     void Start ()
     {
@@ -49,7 +56,8 @@ public class RunnerController : MonoBehaviour
         characterCollider = GetComponent<Collider>();
         characterRigidbody = GetComponent<Rigidbody>();
 
-
+        start_rejuvination_time = rejuvination_time;
+        start_flash_time = flash_time;
         fatigue_pool_start = fatigue_pool;
         mats[0] = Resources.Load<Material>("mainbody");
         mats[1] = Resources.Load<Material>("greenarms");
@@ -67,6 +75,35 @@ public class RunnerController : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        Material[] existing_skin = skin.sharedMaterials;
+        rejuvination_time -= Time.deltaTime;
+        if (rejuvination_time <= 0)
+        {
+            rejuvination_time = start_rejuvination_time;
+            flash_time = start_flash_time;
+            fatigue_pool = fatigue_pool_start;
+        }
+
+        if (flash_time >= 0)
+        {
+            flash_time -= Time.deltaTime;
+
+            if (flash_time > Math.Floor(flash_time) + 0.5)
+            {
+                existing_skin[1] = mats[1];
+                existing_skin[2] = mats[2];
+                existing_skin[3] = mats[3];
+            }
+            else
+            {
+                existing_skin[1] = mats[0];
+                existing_skin[2] = mats[0];
+                existing_skin[3] = mats[0];
+            }
+        }
+
+        skin.sharedMaterials = existing_skin;
+        
 
     }
 
@@ -87,13 +124,12 @@ public class RunnerController : MonoBehaviour
                     Obstacles obstacle = hits[i].transform.GetComponent<Obstacles>();
                     //start of code changes by Shreyas
                     obs_fatigue = obstacle.get_fatigue();
-                    Material[] existing_skin = skin.sharedMaterials;
-                    //Debug.Log(existing_skin[1]);
+                    Material[] existing_skin = skin.sharedMaterials;                    
                     if (obs_fatigue.arms > 0 && existing_skin[1] == mats[7]
                         || obs_fatigue.core > 0 && existing_skin[2] == mats[8]
                         || obs_fatigue.legs > 0 && existing_skin[3] == mats[9])
                     {
-                        Debug.Log("zzz");
+                        //Debug.Log("zzz");
                         break;//don't start animation if body part red and obstacle is taxing
                     }
 
@@ -189,6 +225,17 @@ public class RunnerController : MonoBehaviour
 
     public void ColorBody()
     {
+        //reset body
+        if (fatigue_pool.arms == fatigue_pool_start.arms && fatigue_pool.legs == fatigue_pool_start.legs && fatigue_pool.core == fatigue_pool_start.core)
+        {
+            Material[] existing_skin = skin.sharedMaterials;
+            existing_skin[1] = mats[0];
+            existing_skin[2] = mats[0];
+            existing_skin[3] = mats[0];            
+            skin.sharedMaterials = existing_skin;
+        }
+
+
         fatigue_pool.arms -= obs_fatigue.arms;
         fatigue_pool.core -= obs_fatigue.core;
         fatigue_pool.legs -= obs_fatigue.legs;
@@ -209,7 +256,7 @@ public class RunnerController : MonoBehaviour
             SetBodyColor("core", "red");
         }
         else if(fatigue_pool.core <= yellow_precentage / 100 * fatigue_pool_start.core)
-        {
+        {            
             SetBodyColor("core", "yellow");
         }
 
@@ -229,7 +276,6 @@ public class RunnerController : MonoBehaviour
     void SetBodyColor(string i_body_part,string i_color)
     {
        
-        //Debug.Log(skin);
         Material[] existing_skin = skin.sharedMaterials;
         
         switch (i_body_part)
@@ -238,7 +284,7 @@ public class RunnerController : MonoBehaviour
                 {
                     switch (i_color)
                     {
-                        case "yellow":
+                        case "yellow":          
                             existing_skin[2] = mats[5];
                             break;
 
@@ -256,7 +302,7 @@ public class RunnerController : MonoBehaviour
                 {
                     switch (i_color)
                     {
-                        case "yellow":
+                        case "yellow":                       
                             existing_skin[1] = mats[4];
                             break;
 
